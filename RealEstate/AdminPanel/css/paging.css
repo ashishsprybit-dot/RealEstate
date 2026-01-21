@@ -1,0 +1,152 @@
+﻿
+/* paging */
+
+.paging{background:#EDEDED}
+.paging a:link, .paging a:visited, .paging a:active{color:#002B50; text-decoration:underline; font-weight:bold}
+.paging a:hover{color:#266296; text-decoration:none}
+
+/* paging end */
+
+
+
+
+.myrs-rule {
+    background: url("../../images/layouts/portal/myrs-rule-bg.gif") repeat-x scroll left top transparent;
+    height: 1px;
+    margin: 2em 0;
+}
+.myrs-box {
+    background: url("../../images/layouts/portal/myrs-highlight-bg.gif") repeat-x scroll left top #F2EDEA;
+    border: 1px solid #D0CAC6;
+    margin-bottom: 1em;
+    padding: 10px;
+}
+#myrs-page {
+    margin-top: 1em;
+    position: relative;
+}
+.myrs-form {
+    width: 100%;
+}
+.myrs-float-left {
+    float: left;
+}
+.myrs-pagination {
+  /*  background: none repeat scroll 0 0 #F8F8F8;
+   
+    color: #666666;
+    font-size: 1.1em;
+     
+    
+    text-shadow: 0 1px 0 #FFFFFF;*/
+   border: 1px solid #F0F0F0;
+   padding: 5px;
+   font-family:'Raleway',Geneva,sans-serif;
+
+}
+.myrs-pagination td {
+    border: medium none !important;
+    padding: 0 !important;
+}
+.myrs-pagination a {
+    /*color: #666666;
+    text-decoration: none;*/
+     background-color: #FFFFFF;
+    border-left: 1px solid #DDDDDD;
+    float: left;
+    line-height: 1.42857;     
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+    
+
+}
+.myrs-pagination a:hover {
+    background-color: #EAEBEE;
+    color: #0069AB;
+}
+.myrs-pagination .nextLink, .myrs-pagination .prevLink, .myrs-pagination .step, .myrs-pagination .currentStep, .myrs-pagination .rangeTotal {
+    border: 1px solid #EDF6F9;
+   /* float: left;*/
+    /*padding: 5px;
+    position: relative;*/
+}
+.myrs-pagination .nextLink {
+    background: url("../images/resultset_next.gif") no-repeat scroll right center transparent;
+    margin-right: 20px;
+    padding-right: 21px;
+     background-color: #FFFFFF;
+}
+.myrs-pagination .prevLink {
+    background: url("../images/resultset_previous.gif") no-repeat scroll left center transparent;
+    padding-left: 21px;
+     background-color: #FFFFFF;
+}
+.myrs-pagination .currentStep, .myrs-pagination .rangeTotal {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D9E9F0;
+}
+.myrs-pagination .currentStep {
+    font-weight: bold;
+    background-color: #3EB0AD;
+    border-color: #3EB0AD;
+    color: #FFFFFF;
+    cursor: default;
+     
+}
+.myrs-pagination .rangeTotal {
+    float: right;
+    /*font-size:10px;*/
+}
+.myrs-pagination-total {
+    display: block;
+    float: left;
+    padding:5px;
+}
+.myrs-pagination-maxvalue {
+    display: none;
+    float: left;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+.myrs-pagination .myrs-pagination-maxvalue-toggler {
+    background-image: url("../images/myrs-maxvalue-light.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding-right: 10px;
+}
+.myrs-pagination .myrs-pagination-maxvalue-toggler:hover {
+    background-color: #FFFFFF;
+    background-image: url("../images/myrs-maxvalue.png");
+    color: #333333;
+}
+.myrs-pagination-maxvalue-list {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D0CAC6;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 18px;
+    z-index: 999;
+}
+.myrs-pagination-maxvalue-list a {
+    display: block;
+    padding: 0px 0 0 0;
+    border:0px;
+}
+
+div.myrs-pagination table
+{
+	border-bottom: 0px none;
+    border-left: 0px none;
+    margin: 0 0 0 0;
+    width: 100%;
+}
+
+div.myrs-pagination table td
+{
+	background-color:Transparent;
+	border-right: 0px none;
+}

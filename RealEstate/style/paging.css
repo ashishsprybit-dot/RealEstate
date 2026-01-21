@@ -1,0 +1,68 @@
+﻿
+.mailpart-in{padding:0 1px 50px 1px;background:#e1e1e1}
+.mailpart .topnext{height:21px;}
+.topnext .right{width:14px; text-align:right}
+.paging{float:right;font-size:12px; line-height:21px}
+
+.mailbut { clear:both;}
+.marginrht { margin-right:10px;}
+.pagingbg { background:url(../images/pag-bg.png) no-repeat; line-height:31px; width:790px; height:31px;}
+/*.pagingfr { line-height:31px; width:100%; height:31px;}*/
+/*.pagin a { float:left;}
+.pagin2 { float:left;}*/
+.de-active {
+    background: url("../images/icons.png") no-repeat scroll 0 -315px transparent !important;
+    border: 1px solid #DDDDDD !important;
+    color: #A5A5A5 !important;
+}
+.de-active:hover {
+    background: url("../images/icons.png") no-repeat scroll 0 -315px transparent !important;
+    border: 1px solid #DDDDDD !important;
+    color: #A5A5A5 !important;
+    cursor:default;
+}
+.page{margin-right:0px !important}
+.pagin2 label 
+{
+	
+	color:#00779e !important; /*margin-right: 4px;*/   display: inline-block;
+    font-family: 'RobotoMedium';
+    font-size: 14px;
+    padding: 6px 11px;
+    text-decoration: none; }
+.pagin2 a {      
+    color: #464854;
+    display: inline-block;
+    font-family: 'RobotoMedium';
+    font-size: 14px;
+  /*  margin-right: 4px;*/
+    padding: 6px 0px;
+    text-decoration: none;}
+.pagin2 a:hover	{color:#FFF;}
+.page.de-active:hover {
+    background: url("../images/icons.png") no-repeat scroll 0 -315px transparent;
+    border: 1px solid #DDDDDD;
+    color: #A5A5A5;
+    cursor:default;
+}
+a.previous{ 
+    color: #464854;
+    display: inline-block;
+    font-family: 'RobotoMedium';
+    font-size: 14px;
+   /* margin-right: 4px;*/
+    padding: 6px 0px;
+    text-decoration: none;}
+a.previous:hover{color:#FFF;}
+
+a.next{     
+    color: #464854;
+    display: inline-block;
+    font-family: 'RobotoMedium';
+    font-size: 14px;
+ /*   margin-right: 4px;*/
+    padding: 6px 0px;
+    text-decoration: none;}
+a.next:hover{color:#FFF;}
+.pagination_box .btn_previous{margin:0 !important}
+.pagination_box .btn_next{width:54px !important}

@@ -1,0 +1,111 @@
+/*styles for jquery ui daterangepicker plugin */
+
+.divdate
+{
+	font-size:75%;
+}
+
+.divdate .ui-daterangepickercontain {
+	position: absolute;
+	z-index: 999;
+}
+.divdate .ui-daterangepickercontain .ui-daterangepicker {
+	float: left;
+	padding: 5px !important;
+	width: auto;
+	display: inline;
+	background-image: none !important;
+	clear: left;
+	
+}
+.divdate .ui-daterangepicker ul,.divdate .ui-daterangepicker .ranges,.divdate .ui-daterangepicker .range-start,.divdate .ui-daterangepicker .range-end {
+	float: left;
+	padding: 0;
+	margin: 0;
+	
+}
+.divdate .ui-daterangepicker .ranges {
+	width: auto;
+	position: relative;
+	padding: 5px 5px 40px 0;
+	margin-left: 10px;
+}
+.divdate .ui-daterangepicker .range-start,.divdate .ui-daterangepicker .range-end {
+	margin-left: 5px;
+}
+.divdate .ui-daterangepicker button.btnDone {
+	margin: 0 5px 5px 0;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	clear: both;
+	cursor: pointer;
+	font-size: 1.1em;
+	
+}
+.divdate .ui-daterangepicker ul {
+	width: 17.6em;
+	background: none;
+	border: 0;
+}
+.divdate .ui-daterangepicker li {
+	list-style: none;
+	padding: 1px;
+	cursor: pointer;
+	margin: 1px 0;
+}
+.divdate .ui-daterangepicker li.ui-state-hover,.divdate .ui-daterangepicker li.ui-state-active {
+	padding: 0;
+}
+.divdate .ui-daterangepicker li.preset_0 {
+	margin-top: 1.5em !important;
+}
+.divdate .ui-daterangepicker .ui-widget-content a {
+	text-decoration: none !important;
+}
+.divdate .ui-daterangepicker li a {
+	font-weight: normal;
+	margin: .3em .5em;
+	display: block;
+}
+.divdate .ui-daterangepicker li span {
+	float: right;
+	margin: .3em .2em;
+}
+.divdate .ui-daterangepicker .title-start,.divdate .ui-daterangepicker .title-end {
+	display: block;
+	margin: 0 0 .2em;
+	font-size: 1em;
+	padding: 0 4px 2px;
+}
+.divdate .ui-daterangepicker .ui-datepicker-inline {
+	font-size: 1em;
+}
+.divdate .ui-daterangepicker-arrows {
+	padding: 2px;
+	width: 172px;
+	position: relative;
+}
+.divdate .ui-daterangepicker-arrows input.ui-rangepicker-input {
+	width: 126px !important;
+	margin: 0 2px 0 20px;
+	padding: 2px;
+	height: 1.1em;
+}
+.divdate .ui-daterangepicker-arrows .ui-daterangepicker-prev,.divdate .ui-daterangepicker-arrows .ui-daterangepicker-next {
+	position: absolute;
+	top: 2px; 
+	padding: 1px;
+}
+.divdate .ui-daterangepicker-arrows .ui-daterangepicker-prev {
+	left: 2px;
+}
+.divdate .ui-daterangepicker-arrows .ui-daterangepicker-next {
+	right: 2px;
+}
+.divdate .ui-daterangepicker-arrows .ui-daterangepicker-prev:hover, 
+.divdate .ui-daterangepicker-arrows .ui-daterangepicker-next:hover,
+.divdate .ui-daterangepicker-arrows .ui-daterangepicker-prev:focus, 
+.divdate .ui-daterangepicker-arrows .ui-daterangepicker-next:focus {
+	padding: 0;
+}

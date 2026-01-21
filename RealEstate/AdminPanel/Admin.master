@@ -1,0 +1,358 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="AdminPanel_Admin" %>
+
+<%@ Import Namespace="Utility" %>
+<!DOCTYPE html>
+<html lang="en">
+<head id="Head1" runat="server">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- End Required meta tags -->
+    <!-- Begin SEO tag -->
+    <title><%= "Admin Panel - " + new BAL.GeneralSettings().getConfigValue("WebsiteName").ToString()%></title>
+    <link href="<%=Config.VirtualDir + "adminpanel/images/favicon.ico"%>" rel="icon" type="image/png" />
+    <%--    <script type="application/ld+json">
+      {
+        "name": "Looper - Bootstrap 4 Admin Theme",
+        "description": "Responsive admin theme build on top of Bootstrap 4",
+        "author":
+        {
+          "@type": "Person",
+          "name": "Beni Arisandi"
+        },
+        "@type": "WebSite",
+        "url": "",
+        "headline": "Dashboard",
+        "@context": "http://schema.org"
+      }
+    </script>--%>
+    <!-- End SEO tag -->
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet">
+    <!-- End GOOGLE FONT -->
+    <!-- BEGIN PLUGINS STYLES -->
+    <link rel="stylesheet" href="assets_1/vendor/open-iconic/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="assets_1/vendor/%40fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets_1/vendor/flatpickr/flatpickr.min.css">
+    <!-- END PLUGINS STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link rel="stylesheet" href="assets_1/stylesheets/theme.min.css" data-skin="default">
+    <link rel="stylesheet" href="assets_1/stylesheets/custom.css">
+    <link rel="stylesheet" href="../validation-lib/dev.css" />
+    <%--<link rel="stylesheet" href="../validation-lib/dev.css" />--%>
+    <link href="css/loadingbox.css" rel="stylesheet" />
+    <link href="css/dev.css" rel="stylesheet" />
+    <script type="text/javascript" language="javascript">        var wURL = '<%= Config.WebSiteUrl %>'; </script>
+    <%--<script src="assets/js/repeater.js"></script>--%>
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        function ScrollTop() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="CPHHeader" runat="server" />
+</head>
+
+<body>
+    <!-- .app -->
+    <div class="app">
+        <!--[if lt IE 10]>
+      <div class="page-message" role="alert">You are using an <strong>outdated</strong> browser. Please <a class="alert-link" href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
+      <![endif]-->
+        <!-- .app-header -->
+        <header class="app-header app-header-dark">
+            <!-- .top-bar -->
+            <div class="top-bar">
+                <!-- .top-bar-brand -->
+                <div class="top-bar-brand">
+                    <!-- toggle aside menu -->
+                    <button class="hamburger hamburger-squeeze mr-2" type="button" data-toggle="aside-menu" aria-label="toggle aside menu"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
+                    <!-- /toggle aside menu -->
+                    <a href="dashboard.aspx">CLT
+                    </a>
+                </div>
+                <!-- /.top-bar-brand -->
+                <!-- .top-bar-list -->
+                <div class="top-bar-list">
+                    <!-- .top-bar-item -->
+                    <div class="top-bar-item px-2 d-md-none d-lg-none d-xl-none">
+                        <!-- toggle menu -->
+                        <button class="hamburger hamburger-squeeze" type="button" data-toggle="aside" aria-label="toggle menu"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
+                        <!-- /toggle menu -->
+                    </div>
+                    <!-- /.top-bar-item -->
+                    <!-- .top-bar-item -->
+                    <div class="top-bar-item top-bar-item-full">
+                    </div>
+                    <!-- /.top-bar-item -->
+                    <!-- .top-bar-item -->
+                    <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
+                        <!-- .btn-account -->
+                        <div class="dropdown d-none d-md-flex">
+                            <button class="btn-account user-avtar-icon" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="user-avatar user-avatar-md">
+                                    <i class="oi oi-person"></i>
+                                    <img src="assets_1/images/avatars/profile.jpg" alt="Admin" id="imgAvtar" runat="server" visible="false">
+                                </span>
+                                <span class="account-summary pr-lg-4 d-none d-lg-block"><span class="account-name"><%=UserName %></span></span>
+                            </button>
+                            <!-- .dropdown-menu -->
+                            <div class="dropdown-menu">
+                                <div class="dropdown-arrow d-lg-none" x-arrow=""></div>
+                                <div class="dropdown-arrow ml-3 d-none d-lg-block"></div>
+                                <h6 class="dropdown-header d-none d-md-block d-lg-none"><%=UserName %> </h6>
+                                <a class="dropdown-item" href="javascript:;" data-toggle="modal" data-target="#myModalChangePassword"><span class="dropdown-icon oi oi-person"></span>Change Password</a>
+                                <a class="dropdown-item" id="logoutmobile" onclick="if(confirm('Are you sure you want to logout?')){window.location='login.aspx?type=logout';}" href="javascript:;"><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
+
+                            </div>
+                            <!-- /.dropdown-menu -->
+                        </div>
+                        <!-- /.btn-account -->
+                    </div>
+                    <!-- /.top-bar-item -->
+                </div>
+                <!-- /.top-bar-list -->
+            </div>
+            <!-- /.top-bar -->
+        </header>
+        <!-- /.app-header -->
+        <!-- .app-aside -->
+        <aside class="app-aside app-aside-expand-md app-aside-light">
+            <!-- .aside-content -->
+            <div class="aside-content">
+                <!-- .aside-header -->
+                <header class="aside-header d-block d-md-none">
+                    <!-- .btn-account -->
+                    <button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside">
+                        <span class="user-avatar user-avatar-lg">
+                            <%--<img src="assets_1/images/avatars/profile.jpg" alt="">--%>
+                            <i class="oi oi-person avtar-res"></i>
+                        </span><span class="account-icon"><span class="fa fa-caret-down fa-lg"></span></span><span class="account-summary"><span class="account-name"><%=UserName %></span> <span class="account-description"><br /></span></span></button>
+                    <!-- /.btn-account -->
+                    <!-- .dropdown-aside -->
+                    <div id="dropdown-aside" class="dropdown-aside collapse">
+                        <!-- dropdown-items -->
+                        <div class="pb-3">
+                             <a class="dropdown-item" href="javascript:;" data-toggle="modal" data-target="#myModalChangePassword"><span class="dropdown-icon oi oi-person"></span>Change Password</a>
+                                <a class="dropdown-item" id="logout" onclick="if(confirm('Are you sure you want to logout?')){window.location='login.aspx?type=logout';}" href="javascript:;"><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
+
+                            
+                        </div>
+                        <!-- /dropdown-items -->
+                    </div>
+                    <!-- /.dropdown-aside -->
+                </header>
+                <!-- /.aside-header -->
+                <!-- .aside-menu -->
+                <div class="aside-menu overflow-hidden">
+                    <!-- .stacked-menu -->
+                    <nav id="stacked-menu" class="stacked-menu">
+                        <!-- .menu -->
+                        <ul class="menu">
+                            <!-- .menu-item -->
+                            <li class="menu-item has-active liDashboard">
+                                <a href="Dashboard.aspx" class="menu-link"><span class="menu-icon fas fa-home"></span><span class="menu-text">Dashboard</span></a>
+                            </li>
+                            <!-- /.menu-item -->
+
+                            <asp:Repeater ID="rptModules" runat="server">
+                                <%-- <HeaderTemplate>
+                                    <li class="menu-item has-child liGeneral">
+                                        <a href="#" class="menu-link"><span class="menu-icon far fa-file"></span><span class="menu-text">Modules</span></a>
+                                        <ul class="menu">
+                                </HeaderTemplate>--%>
+                                <ItemTemplate>
+                                    <li class="menu-item">
+                                        <a href="<%#Eval("PageURL") %>" title="<%#Eval("PageName") %>" class="menu-link lnkMenu"><span class="menu-icon fas fa-<%#Eval("Icon") %>"></span><span class="menu-text"><%#Eval("PageName") %></span></a>
+                                    </li>
+
+
+
+                                </ItemTemplate>
+                                <%--<FooterTemplate>
+                                    </ul>   </li>
+                                </FooterTemplate>--%>
+                            </asp:Repeater>
+                        </ul>
+                        <!-- /.menu -->
+                    </nav>
+                    <!-- /.stacked-menu -->
+                </div>
+                <!-- /.aside-menu -->
+            </div>
+            <!-- /.aside-content -->
+        </aside>
+        <!-- /.app-aside -->
+        <!-- .app-main -->
+        <main class="app-main">
+            <!-- .wrapper -->
+            <div class="wrapper">
+                <!-- .page -->
+                <div class="page">
+                    <!-- .page-inner -->
+                    <div class="page-inner">
+                        <asp:ContentPlaceHolder runat="server" ID="CPHContent"></asp:ContentPlaceHolder>
+                    </div>
+                    <!-- /.page-inner -->
+                </div>
+                <!-- /.page -->
+            </div>
+            <!-- .app-footer -->
+            <asp:ContentPlaceHolder runat="server" ID="CPHFooter">
+            </asp:ContentPlaceHolder>
+            <footer class="app-footer">
+
+                <div class="copyright footertext"><%= new BAL.GeneralSettings().getConfigValue("footertext").ToString()%> Developed by <a href="https://www.flexboxdigital.com.au/" target="_blank">Flexbox Digital.</a></div>
+            </footer>
+            <!-- /.app-footer -->
+            <!-- /.wrapper -->
+        </main><!-- /.app-main -->
+    </div>
+    <div id="myModalChangePassword" class="modal fade" data-backdrop="static" tabindex="-1" data-focus-on="input:first" role="dialog" aria-labelledby="exampleModalAlertWarningLabel" aria-hidden="true">
+
+
+        <div class="modal-dialog modal-l1g" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5>Change Password</h5>
+                    <hr />
+                </div>
+                <form id="frmUserChangePassword">
+
+                    <div class="modal-body">
+                        <div class="panel-body well-lg">
+                            <div id="divChangepassword" class="red" runat="server">
+                            </div>
+                            <div class="form-group">
+                                <label for="tbxOldPassword">Current Password</label><span class="red">*</span>
+                                <input type="text" class="form-control" id="tbxOldPassword" name="tbxOldPassword" maxlength="25" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tbxNewPassword">New Password</label><span class="red">*</span>
+                                <input type="text" class="form-control" id="tbxNewPassword" name="tbxNewPassword" maxlength="25" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tbxConfPassword">Confirm Password</label><span class="red">*</span>
+                                <input type="text" class="form-control" id="tbxConfPassword" name="tbxConfPassword" maxlength="25" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-warning" onclick="return AdminChangePassword();">Save Changes</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.app -->
+    <!-- BEGIN BASE JS -->
+    <%--<script src="assets_1/vendor/jquery/jquery.min.js"></script>--%>
+
+    <script src="assets_1/vendor/popper.js/umd/popper.min.js"></script>
+    <script src="assets_1/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- END BASE JS -->
+    <!-- BEGIN PLUGINS JS -->
+    <script src="assets_1/vendor/pace-progress/pace.min.js"></script>
+    <script src="assets_1/vendor/stacked-menu/js/stacked-menu.min.js"></script>
+    <script src="assets_1/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets_1/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="assets_1/javascript/pages/dataTables.bootstrap.js"></script>
+
+    <%--    <script src="assets_1/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="assets_1/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="assets_1/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="assets_1/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>--%>
+    <!-- END PLUGINS JS -->
+    <!-- BEGIN THEME JS -->
+    <script src="assets_1/javascript/theme.min.js"></script>
+    <!-- END THEME JS -->
+    <!-- BEGIN PAGE LEVEL JS -->
+    <%--<script src="assets_1/javascript/pages/dashboard-demo.js"></script>--%>
+    <!-- END PAGE LEVEL JS -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <script src="assets/js/repeater.js"></script>
+    <script src="assets/js/loadingwindow.js"></script>
+    <script src="../validation-lib/jquery.validate.min.js"></script>
+    <script src="../validation-lib/form-validation.js"></script>
+
+    <script src="assets/js/Common.js"></script>
+
+    <script type="text/javascript">
+        // $(document).ready(function () {        
+
+        $('.menu-item').removeClass('has-active')
+        if ('<%=SelectedSection%>' == 'General') {
+            $('.liGeneral').addClass('has-active');
+        }
+        else {
+            $('.liDashboard').addClass('has-active');
+        }
+
+        var currentlocation = window.location.href;
+        currentlocation = currentlocation.substring(currentlocation.lastIndexOf('/') + 1, currentlocation.length);
+
+        $('.lnkMenu').each(function () {
+            if ($(this).attr('href').toLowerCase() == currentlocation.toLowerCase()) {
+                $(this).parent().addClass('has-active')
+            }
+        });
+
+        // });
+        FormValidation.init();
+    </script>
+    <script type="text/javascript">
+        var divChangepassword = '<%= divChangepassword.ClientID %>'
+        function AdminChangePassword() {
+            //var err = DirValCtrl();
+            var err = '';
+            if (jQuery.trim($('#tbxOldPassword').val()).length == 0)
+                err = err + '<br/>- Current Password is required.';
+            if (jQuery.trim($('#tbxNewPassword').val()).length == 0)
+                err = err + '<br/>- New Password is required.';
+            if (jQuery.trim($('#tbxConfPassword').val()).length == 0)
+                err = err + '<br/>- Confirm Password is required.';
+
+            if (jQuery.trim($('#tbxOldPassword').val()).length > 0 && jQuery.trim($('#tbxNewPassword').val()).length > 0 && jQuery.trim($('#tbxConfPassword').val()).length > 0) {
+                if ($('#tbxNewPassword').val().length < 6 && $('#tbxConfPassword').val().length < 6)
+                    err = err + '<br/>- New and Confirm Password must be 6 characters long.';
+                else if ($('#tbxNewPassword').val().length < 6)
+                    err = err + '<br/>- New Password must be 6 characters long';
+                else if ($('#tbxConfPassword').val().length < 6)
+                    err = err + '<br/>- Confirm Password must be 6 characters long';
+                else if ($('#tbxNewPassword').val() != $('#tbxConfPassword').val())
+                    err = err + "<br/>- New password and Confirm password must be same.";
+
+            }
+            if (err != '') { DisplMsg(divChangepassword, '<b>Please correct the following errors</b>' + err, 'alert-message error'); return false; }
+
+            $.ajax({
+                url: 'login.aspx?type=userChangePassword',
+                type: 'POST',
+                data: $('#frmUserChangePassword').serialize(),
+                success: function (resp) {
+
+                    if (resp.substring(0, 1) == "1") {
+                        DisplMsg(divChangepassword, resp.substring(2, resp.toString().length), 'alert-message error');
+                    }
+                    else if (resp.substring(0, 1) == "2") {
+                        DisplMsg(divChangepassword, resp.substring(2, resp.toString().length), 'alert-message success');
+                        $('#tbxOldPassword').val("");
+                        $('#tbxNewPassword').val("");
+                        $('#tbxConfPassword').val("");
+                        setTimeout("window.location='login.aspx?type=logout';", '3000');
+                    }
+
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

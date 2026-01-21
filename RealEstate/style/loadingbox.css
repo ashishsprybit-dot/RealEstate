@@ -1,0 +1,56 @@
+#processing_overlay
+{
+	position: absolute;
+	z-index: 99998;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: auto;
+	background-color:#000;
+	opacity:0.5;filter:alpha(opacity=50);
+	cursor:wait;
+}						
+#processing_container {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	min-width: 300px; /* Dialog will be no smaller than this */
+	max-width: 600px; /* Dialog will wrap after this width */
+	background: #FFF;
+	border: solid 5px #a2a3a7;
+	color: #000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	z-index: 999999 !important
+}
+
+#processing_title {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.75em;
+	background-color:#a2a3a7;
+	color: #FFF;
+	/*border: solid 1px #FFF;*/
+	border-bottom: solid 1px #999;
+	cursor: default;
+	padding: 0em;
+	margin: 0em;
+}
+
+#processing_content {
+	text-align: center;
+    /*padding: 1em 1.75em;*/
+    padding-bottom:10px;
+	margin: 0em;
+}
+
+#processing_message {
+	text-align:center;
+	vertical-align:middle;
+     color: #fc2424;    
+    font-size: 20px;
+    line-height: 32px;
+    padding-bottom: 11px;
+    padding-top: 15px;
+}
