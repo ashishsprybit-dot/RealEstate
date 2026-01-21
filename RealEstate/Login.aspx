@@ -89,31 +89,29 @@
                 </div>
             </div>
             <%-- <label>OR</label>--%>
-            <div class="log-divider">
+          <%--  <div class="log-divider">
                 <span class="bg-light">Sign in with Google</span>
-            </div>
-            <div class="row">
+            </div>--%>
+         <%--   <div class="row">
                 <div class="form-group mb-4 col-md-6">
                     <button class="btn btn-lg btn-danger btn-block" type="button" id="btnGoogleLogin" onclick="GoogleLogin()">
                         <i class='fab fa-google mr5'></i>
-                        <%--  <img style="height: 20px; vertical-align: text-bottom; margin-right: 8px;" src="<%=Config.VirtualDir %>images/google.png" />--%>
                         Teacher</button>
                 </div>
                 <div class="form-group mb-4 col-md-6">
                     <button class="btn btn-lg btn-danger btn-block" type="button" id="btnGoogleLoginAdmin" onclick="GoogleLoginAdmin()">
                         <i class='fab fa-google mr5'></i>
-                        <%--<img style="height: 20px; vertical-align: text-bottom; margin-right: 8px;" src="<%=Config.VirtualDir %>images/google.png" />--%>
                         Admin</button>
                 </div>
-            </div>
-            DON'T HAVE AN ACCOUNT?<a href="#SignupModal" style="padding-left: 7px;" class="card-footer-item" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="ResetControls()">SIGN UP</a>
+            </div>--%>
+            <%--DON'T HAVE AN ACCOUNT?<a href="#SignupModal" style="padding-left: 7px;" class="card-footer-item" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="ResetControls()">SIGN UP</a>--%>
             <!-- /.form-group -->
             <!-- copyright -->
-            <br />
+            <%--<br />
             <br />
             <p class="mb-0 px-3 text-muted text-center">
                 <%= new BAL.GeneralSettings().getConfigValue("footertext").ToString()%>
-            </p>
+            </p>--%>
         </form>
         <!-- /.auth-form -->
 

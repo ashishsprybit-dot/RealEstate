@@ -62,7 +62,16 @@
             return Convert.ToInt32(dbParam[dbParam.Length-1].Value);
         }
 
-         
+        public DataSet TenantLogin(string GoogleID, string RequestedSchoolURL)
+        {
+            DbParameter[] dbParam = new DbParameter[] {
+                new DbParameter("@UserName", DbParameter.DbType.VarChar, 500, base.UserName),
+                new DbParameter("@Password", DbParameter.DbType.VarChar, 500, base.Password),               
+                new DbParameter("@TenantURL", DbParameter.DbType.VarChar, 500, RequestedSchoolURL),
+            };
+            return DbConnectionDAL.GetDataSet(CommandType.StoredProcedure, "TenantLogin", dbParam);
+        }
+
     }
 }
 

@@ -81,7 +81,7 @@ var DataTablesDemo = /*#__PURE__*/ function () {
                     //    searchable: false
                     //},
                     {
-                        data: 'SchoolName',
+                        data: 'TenantName',
                         className: 'align-middle'
                     },
                     {
@@ -122,7 +122,7 @@ var DataTablesDemo = /*#__PURE__*/ function () {
                     },
                     {                        
                         targets: 4,
-                        render: function render(data, type, row, meta) {
+                        render: function render(data, type, row, meta) { 
                             return "<a href='javascript:;' id='lnk" + row.ID  + "' onclick='GridOperation(" + divMsg + ",\"" + (row.Status == true ? "inactive" : "active") + "\"," + row.ID + ");' ><span class='list-icon'><span class='" + (row.Status == true ? 'oi oi-circle-check text-success' : 'oi oi-circle-x text-red') + "'></span></span></a>";
                         }
                     },

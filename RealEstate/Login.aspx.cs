@@ -11,7 +11,7 @@ using System.Data;
 
 public partial class Login : System.Web.UI.Page
 {
-    TeachersBAL objTeachersBAL = new TeachersBAL();
+    TenantBAL objTenantBAL = new TenantBAL();
     protected string RequestedSchoolURL = "";
     protected string BackgroundImage = "";
     protected string SchoolLogo = "";
@@ -33,11 +33,11 @@ public partial class Login : System.Web.UI.Page
                 RequestedSchoolURL = Convert.ToString(Session["RequestedSchoolURL"]);
                 if (RequestedSchoolURL.ToLower() != Convert.ToString(Request["c1"]).ToLower())
                 {
-                    Session["SchoolID"] = null;
-                    Session["IsTeacher"] = null;
+                    Session["TenantID"] = null;
+                    Session["IsTenantuser"] = null;
                     Session["EmailID"] = null;
-                    Session["TeacherUserID"] = null;
-                    Session["TeacherName"] = null;
+                    Session["TenantUserID"] = null;
+                    Session["TenantName"] = null;
                     Session["SchoolCurrentYear"] = null;
                     Session["SchoolCurrentSemester"] = null;
                     Session["IsGoogleUser"] = null;
@@ -255,14 +255,16 @@ public partial class Login : System.Web.UI.Page
     #region Login Process
     private void SessionClear()
     {
-        Session["SchoolID"] = null;
-        Session["IsTeacher"] = null;
+        Session["TenantID"] = null;
+        Session["IsTenantuser"] = null;
         Session["EmailID"] = null;
-        Session["TeacherUserID"] = null;
-        Session["TeacherName"] = null;
+        Session["TenantUserID"] = null;
+        Session["TenantName"] = null;
         Session["SchoolCurrentYear"] = null;
         Session["SchoolCurrentSemester"] = null;
         Session["IsGoogleUser"] = null;
+
+ 
         Session.Abandon();
     }
     private void CheckAuthentication(string strUsername, string strPassword)
@@ -270,10 +272,10 @@ public partial class Login : System.Web.UI.Page
         string strValidation = string.Empty;
         if (IsValidMemberLoginValidation(out strValidation))
         {
-            objTeachersBAL.UserName = strUsername;
-            objTeachersBAL.Password = Utility.Security.EncryptDescrypt.EncryptString(strPassword);
+            objTenantBAL.UserName = strUsername;
+            objTenantBAL.Password = Utility.Security.EncryptDescrypt.EncryptString(strPassword);
             DataSet ds = new DataSet();
-            ds = objTeachersBAL.TeacherLogin("", RequestedSchoolURL);
+            ds = objTenantBAL.TenantLogin("", RequestedSchoolURL);
             int Status = 0;
             DataTable dt = new DataTable();
             if (ds.Tables[0].Rows.Count > 0)
@@ -286,12 +288,12 @@ public partial class Login : System.Web.UI.Page
                 dt = ds.Tables[1];
                 if (dt.Rows.Count > 0)
                 {
-                    Session["SchoolID"] = Convert.ToString(dt.Rows[0]["SchoolID"]);
-                    Session["IsTeacher"] = Convert.ToString(dt.Rows[0]["IsTeacher"]);
+                    Session["TenantID"] = Convert.ToString(dt.Rows[0]["TenantID"]);
+                    Session["IsTenantuser"] = Convert.ToString(dt.Rows[0]["IsTenantuser"]);
                     Session["EmailID"] = Convert.ToString(dt.Rows[0]["EmailID"]);
-                    Session["TeacherUserID"] = Convert.ToString(dt.Rows[0]["ID"]);
-                    Session["TeacherName"] = Convert.ToString(dt.Rows[0]["FirstName"]) + " " + Convert.ToString(dt.Rows[0]["LastName"]);
-                    Session["IsGoogleUser"] = Convert.ToString(dt.Rows[0]["IsGoogleUser"]);
+                    Session["TenantUserID"] = Convert.ToString(dt.Rows[0]["ID"]);
+                    Session["TenantName"] = Convert.ToString(dt.Rows[0]["FirstName"]) + " " + Convert.ToString(dt.Rows[0]["LastName"]);
+                    
 
                     //// Set Cookie ------------------------------------------------------------
                     JudgementAuthentication.SetTeacherCookieInfo(Convert.ToInt64(dt.Rows[0]["ID"]));
@@ -309,14 +311,14 @@ public partial class Login : System.Web.UI.Page
 
                 }
 
-                if (ds.Tables.Count > 1)
-                {
-                    if (ds.Tables[2].Rows.Count > 0)
-                    {
-                        Session["SchoolCurrentYear"] = Convert.ToString(ds.Tables[2].Rows[0]["CurrentYear"]);
-                        Session["SchoolCurrentSemester"] = Convert.ToString(ds.Tables[2].Rows[0]["SemesterNo"]);
-                    }
-                }
+                //if (ds.Tables.Count > 1)
+                //{
+                //    if (ds.Tables[2].Rows.Count > 0)
+                //    {
+                //        Session["SchoolCurrentYear"] = Convert.ToString(ds.Tables[2].Rows[0]["CurrentYear"]);
+                //        Session["SchoolCurrentSemester"] = Convert.ToString(ds.Tables[2].Rows[0]["SemesterNo"]);
+                //    }
+                //}
 
                 Response.Write("success");
             }
@@ -355,54 +357,54 @@ public partial class Login : System.Web.UI.Page
 
     private void SignUP()
     {
-        objTeachersBAL.ID = 0;
-        string strPasword = string.Empty;
+        //objTeachersBAL.ID = 0;
+        //string strPasword = string.Empty;
 
-        if (!string.IsNullOrEmpty(Request.Form["tbxTeacherPassword"]))
-        {
-            strPasword = Request.Form["tbxTeacherPassword"];
-        }
-        objTeachersBAL.ImageName = "";
-        objTeachersBAL.FirstName = Request.Form["tbxTeacherFirstName"].Trim();
-        objTeachersBAL.LastName = Request.Form["tbxTeacherLastName"].Trim();
+        //if (!string.IsNullOrEmpty(Request.Form["tbxTeacherPassword"]))
+        //{
+        //    strPasword = Request.Form["tbxTeacherPassword"];
+        //}
+        //objTeachersBAL.ImageName = "";
+        //objTeachersBAL.FirstName = Request.Form["tbxTeacherFirstName"].Trim();
+        //objTeachersBAL.LastName = Request.Form["tbxTeacherLastName"].Trim();
 
-        if (strPasword != string.Empty)
-        {
-            objTeachersBAL.Password = Utility.Security.EncryptDescrypt.EncryptString(strPasword);
-        }
-        else
-        {
-            objTeachersBAL.Password = "";
-        }
-        objTeachersBAL.EmailID = Request.Form["tbxTeacherEmail"].Trim();
-        objTeachersBAL.Phone = Request.Form["tbxTeacherPhone"].Trim();
-        objTeachersBAL.Status = 2;
+        //if (strPasword != string.Empty)
+        //{
+        //    objTeachersBAL.Password = Utility.Security.EncryptDescrypt.EncryptString(strPasword);
+        //}
+        //else
+        //{
+        //    objTeachersBAL.Password = "";
+        //}
+        //objTeachersBAL.EmailID = Request.Form["tbxTeacherEmail"].Trim();
+        //objTeachersBAL.Phone = Request.Form["tbxTeacherPhone"].Trim();
+        //objTeachersBAL.Status = 2;
 
-        string assignedModules = "";
-        switch (objTeachersBAL.Save(1, assignedModules, "", RequestedSchoolURL))
-        {
-            case 0:
-                Response.Write("duplicate");
-                break;
-            default:
-                //Send Email to User and Admin
+        //string assignedModules = "";
+        //switch (objTeachersBAL.Save(1, assignedModules, "", RequestedSchoolURL))
+        //{
+        //    case 0:
+        //        Response.Write("duplicate");
+        //        break;
+        //    default:
+        //        //Send Email to User and Admin
 
-                DataSet ds = new DataSet();
-                SchoolBAL objSchoolBAL = new SchoolBAL();
-                ds = objSchoolBAL.SchoolAndAdminList(Convert.ToString(Session["RequestedSchoolURL"]));
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    SendUserEmail((objTeachersBAL.FirstName + " " + objTeachersBAL.LastName), objTeachersBAL.EmailID, Convert.ToString(ds.Tables[0].Rows[0]["Name"]));
-                }
+        //        DataSet ds = new DataSet();
+        //        SchoolBAL objSchoolBAL = new SchoolBAL();
+        //        ds = objSchoolBAL.SchoolAndAdminList(Convert.ToString(Session["RequestedSchoolURL"]));
+        //        if (ds.Tables[0].Rows.Count > 0)
+        //        {
+        //            SendUserEmail((objTeachersBAL.FirstName + " " + objTeachersBAL.LastName), objTeachersBAL.EmailID, Convert.ToString(ds.Tables[0].Rows[0]["Name"]));
+        //        }
 
-                if (ds.Tables[1].Rows.Count > 0)
-                {
-                    SendAdminEmail(ds.Tables[1], Convert.ToString(ds.Tables[0].Rows[0]["Name"]), (objTeachersBAL.FirstName + " " + objTeachersBAL.LastName), objTeachersBAL.EmailID);
-                }
+        //        if (ds.Tables[1].Rows.Count > 0)
+        //        {
+        //            SendAdminEmail(ds.Tables[1], Convert.ToString(ds.Tables[0].Rows[0]["Name"]), (objTeachersBAL.FirstName + " " + objTeachersBAL.LastName), objTeachersBAL.EmailID);
+        //        }
 
-                Response.Write("success");
-                break;
-        }
+        //        Response.Write("success");
+        //        break;
+        //}
         Response.End();
     }
 

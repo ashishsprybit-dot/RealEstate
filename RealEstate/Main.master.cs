@@ -130,153 +130,153 @@ public partial class JudgementTool_Main : AdminPageSetting
     {
         string SURL = Convert.ToString(Request["c1"]);
 
-        DataTable dt = new DataTable();
-        TeachersBAL objTeachersBAL = new TeachersBAL();
+        //DataTable dt = new DataTable();
+        //TeachersBAL objTeachersBAL = new TeachersBAL();
 
-        if (Session["TeacherUserID"] != null)
-            objTeachersBAL.ID = Convert.ToInt32(Session["TeacherUserID"]);
-        dt = objTeachersBAL.TeacherPageRights();
+        //if (Session["TeacherUserID"] != null)
+        //    objTeachersBAL.ID = Convert.ToInt32(Session["TeacherUserID"]);
+        //dt = objTeachersBAL.TeacherPageRights();
 
-        DataView dv = new DataView(dt);
-        dv.RowFilter = "ShowinMenu=1 and ParentName='Modules'";
+        //DataView dv = new DataView(dt);
+        //dv.RowFilter = "ShowinMenu=1 and ParentName='Modules'";
 
-        if (dv.Count > 0)
-        {
-            rptModules.DataSource = dv;
-            rptModules.DataBind();
-        }
+        //if (dv.Count > 0)
+        //{
+        //    rptModules.DataSource = dv;
+        //    rptModules.DataBind();
+        //}
 
-        dv = new DataView(dt);
-        dv.RowFilter = "ShowinMenu=1 and ParentName='Results'";
+        //dv = new DataView(dt);
+        //dv.RowFilter = "ShowinMenu=1 and ParentName='Results'";
 
-        if (dv.Count > 0)
-        {
-            rptResults.DataSource = dv;
-            rptResults.DataBind();
-            rptResults.Visible = true;
-        }
-        else
-        {
-            rptResults.Visible = false;
-        }
-        dv = new DataView(dt);
-        dv.RowFilter = "ShowinMenu=1 and ParentName='Home Groups'";
+        //if (dv.Count > 0)
+        //{
+        //    rptResults.DataSource = dv;
+        //    rptResults.DataBind();
+        //    rptResults.Visible = true;
+        //}
+        //else
+        //{
+        //    rptResults.Visible = false;
+        //}
+        //dv = new DataView(dt);
+        //dv.RowFilter = "ShowinMenu=1 and ParentName='Home Groups'";
 
-        if (dv.Count > 0)
-        {
-            rptHomeGroups.DataSource = dv;
-            rptHomeGroups.DataBind();
-            rptHomeGroups.Visible = true;
-        }
-        else
-        {
-            rptHomeGroups.Visible = false;
-        }
+        //if (dv.Count > 0)
+        //{
+        //    rptHomeGroups.DataSource = dv;
+        //    rptHomeGroups.DataBind();
+        //    rptHomeGroups.Visible = true;
+        //}
+        //else
+        //{
+        //    rptHomeGroups.Visible = false;
+        //}
         
-        //--------------------- Reports --------------------------------
+        ////--------------------- Reports --------------------------------
 
-        dv = new DataView(dt);
-        dv.RowFilter = "ShowinMenu=1 and ParentName='Reports'";
+        //dv = new DataView(dt);
+        //dv.RowFilter = "ShowinMenu=1 and ParentName='Reports'";
 
-        if (dv.Count > 0)
-        {
-            rptReports.DataSource = dv;
-            rptReports.DataBind();
-            rptReports.Visible = true;
-        }
-        else
-        {
-            rptReports.Visible = false;
-        }
+        //if (dv.Count > 0)
+        //{
+        //    rptReports.DataSource = dv;
+        //    rptReports.DataBind();
+        //    rptReports.Visible = true;
+        //}
+        //else
+        //{
+        //    rptReports.Visible = false;
+        //}
 
-        //--------------------- Export --------------------------------
+        ////--------------------- Export --------------------------------
 
-        dv = new DataView(dt);
-        dv.RowFilter = "ShowinMenu=1 and ParentName='Export'";
+        //dv = new DataView(dt);
+        //dv.RowFilter = "ShowinMenu=1 and ParentName='Export'";
 
-        if (dv.Count > 0)
-        {
-            rptExport.DataSource = dv;
-            rptExport.DataBind();
-            rptExport.Visible = true;
-        }
-        else
-        {
-            rptExport.Visible = false;
-        }
-
-
-        //--------------------- Cohorts --------------------------------
-
-        dv = new DataView(dt);
-        dv.RowFilter = "ParentName='Cohorts Reports'";
-
-        if (dv.Count > 0)
-        {
-            DataTable dtCohorts = new DataTable();
-            CohortsBAL objCohortsBAL = new CohortsBAL();
-            dtCohorts = objCohortsBAL.GetList(SURL);
-            if (dtCohorts.Rows.Count > 0)
-            {
-                rptCohorts.DataSource = dtCohorts;
-                rptCohorts.DataBind();
-                rptCohorts.Visible = true;
-            }
-        }
-        else
-        {
-            rptCohorts.Visible = false;
-        }
+        //if (dv.Count > 0)
+        //{
+        //    rptExport.DataSource = dv;
+        //    rptExport.DataBind();
+        //    rptExport.Visible = true;
+        //}
+        //else
+        //{
+        //    rptExport.Visible = false;
+        //}
 
 
-        if (Session["TeacherUserID"] != null)
-        {
+        ////--------------------- Cohorts --------------------------------
 
-            DataView dvPageAccess = new DataView(dt);
-            string Pageurl = Request.Url.ToString();
-            //Pageurl = Pageurl.Replace(Utility.Config.WebSiteUrl, string.Empty).Replace(RequestedSchoolURL, string.Empty).Replace("/", string.Empty);
+        //dv = new DataView(dt);
+        //dv.RowFilter = "ParentName='Cohorts Reports'";
 
-            if (Pageurl.IndexOf("school-configuration.aspx") >= 0)
-            {
-                Pageurl = "school-configuration.aspx";
-            }
-            else
-            {
-                Pageurl = Pageurl.Replace(Utility.Config.WebSiteUrl, string.Empty).Replace(RequestedSchoolURL, string.Empty).Replace("/", string.Empty);
-            }
+        //if (dv.Count > 0)
+        //{
+        //    DataTable dtCohorts = new DataTable();
+        //    CohortsBAL objCohortsBAL = new CohortsBAL();
+        //    dtCohorts = objCohortsBAL.GetList(SURL);
+        //    if (dtCohorts.Rows.Count > 0)
+        //    {
+        //        rptCohorts.DataSource = dtCohorts;
+        //        rptCohorts.DataBind();
+        //        rptCohorts.Visible = true;
+        //    }
+        //}
+        //else
+        //{
+        //    rptCohorts.Visible = false;
+        //}
 
-            if (Pageurl.IndexOf("?") >= 0)
-            {
-                Pageurl = Pageurl.Substring(0, Pageurl.IndexOf("?"));
-            }
-            dvPageAccess.RowFilter = "PageVerify like '%," + Pageurl.ToLower() + "%'";
 
-            if (dvPageAccess.Count == 0 && Pageurl.ToLower() != "dashboard.aspx" && Pageurl.ToLower() != "access-denied.aspx" && Pageurl.ToLower() != "testchart.aspx")
-            {
-                if (Request["c1"] != null)
-                {
-                    Response.Redirect(Config.WebSiteUrl + SURL + "/access-denied.aspx");
-                }
-                else
-                {
-                    Response.Redirect("access-denied.aspx");
-                }
+        //if (Session["TeacherUserID"] != null)
+        //{
 
-            }
+        //    DataView dvPageAccess = new DataView(dt);
+        //    string Pageurl = Request.Url.ToString();
+        //    //Pageurl = Pageurl.Replace(Utility.Config.WebSiteUrl, string.Empty).Replace(RequestedSchoolURL, string.Empty).Replace("/", string.Empty);
 
-        }
-        else
-        {
-            if (Request["c1"] != null)
-            {
+        //    if (Pageurl.IndexOf("school-configuration.aspx") >= 0)
+        //    {
+        //        Pageurl = "school-configuration.aspx";
+        //    }
+        //    else
+        //    {
+        //        Pageurl = Pageurl.Replace(Utility.Config.WebSiteUrl, string.Empty).Replace(RequestedSchoolURL, string.Empty).Replace("/", string.Empty);
+        //    }
 
-                Response.Redirect(Config.WebSiteUrl + SURL + "/login.aspx");
-            }
-            else
-            {
-                Response.Redirect("login.aspx");
-            }
-        }
+        //    if (Pageurl.IndexOf("?") >= 0)
+        //    {
+        //        Pageurl = Pageurl.Substring(0, Pageurl.IndexOf("?"));
+        //    }
+        //    dvPageAccess.RowFilter = "PageVerify like '%," + Pageurl.ToLower() + "%'";
+
+        //    if (dvPageAccess.Count == 0 && Pageurl.ToLower() != "dashboard.aspx" && Pageurl.ToLower() != "access-denied.aspx" && Pageurl.ToLower() != "testchart.aspx")
+        //    {
+        //        if (Request["c1"] != null)
+        //        {
+        //            Response.Redirect(Config.WebSiteUrl + SURL + "/access-denied.aspx");
+        //        }
+        //        else
+        //        {
+        //            Response.Redirect("access-denied.aspx");
+        //        }
+
+        //    }
+
+        //}
+        //else
+        //{
+        //    if (Request["c1"] != null)
+        //    {
+
+        //        Response.Redirect(Config.WebSiteUrl + SURL + "/login.aspx");
+        //    }
+        //    else
+        //    {
+        //        Response.Redirect("login.aspx");
+        //    }
+        //}
 
     }
     private void BindAdminName()
@@ -394,72 +394,72 @@ public partial class JudgementTool_Main : AdminPageSetting
     }
     private void CheckCookieLogin()
     {
-        if (Session["TeacherUserID"] == null)
-        {
-            // HttpCookie cookie = HttpContext.Current.Request.Cookies["jud#ge$eMe#$nTTe@chER"];
-            //HttpCookie cookie = HttpContext.Current.Response.Cookies["jud#ge$eMe#$nTTe@chER"];
-            HttpCookie cookie = HttpContext.Current.Request.Cookies["jud#ge$eMe#$nTTe@chER"];
-            if (cookie != null)
-            {
-                // if (Convert.ToDateTime(cookie.Expires.Date) >= DateTime.Now)
-                if (cookie.Value != "")
-                {
-                    int UserID = Convert.ToInt32(EncryptDescrypt.DecryptString(cookie.Value));
-                    TeachersBAL objTeachersBAL = new TeachersBAL();
-                    objTeachersBAL.ID = UserID;
+        //if (Session["TeacherUserID"] == null)
+        //{
+        //    // HttpCookie cookie = HttpContext.Current.Request.Cookies["jud#ge$eMe#$nTTe@chER"];
+        //    //HttpCookie cookie = HttpContext.Current.Response.Cookies["jud#ge$eMe#$nTTe@chER"];
+        //    HttpCookie cookie = HttpContext.Current.Request.Cookies["jud#ge$eMe#$nTTe@chER"];
+        //    if (cookie != null)
+        //    {
+        //        // if (Convert.ToDateTime(cookie.Expires.Date) >= DateTime.Now)
+        //        if (cookie.Value != "")
+        //        {
+        //            int UserID = Convert.ToInt32(EncryptDescrypt.DecryptString(cookie.Value));
+        //            TeachersBAL objTeachersBAL = new TeachersBAL();
+        //            objTeachersBAL.ID = UserID;
 
-                    DataTable dt = new DataTable();
-                    dt = objTeachersBAL.TeacherDetaiolsByID();
-                    if (dt.Rows.Count > 0)
-                    {
-                        Session["SchoolID"] = Convert.ToString(dt.Rows[0]["SchoolID"]);
-                        Session["IsTeacher"] = Convert.ToString(dt.Rows[0]["IsTeacher"]);
-                        Session["EmailID"] = Convert.ToString(dt.Rows[0]["EmailID"]);
-                        Session["TeacherUserID"] = Convert.ToString(dt.Rows[0]["ID"]);
-                        Session["TeacherName"] = Convert.ToString(dt.Rows[0]["FirstName"]) + " " + Convert.ToString(dt.Rows[0]["LastName"]);
-                        Session["IsGoogleUser"] = Convert.ToString(dt.Rows[0]["IsGoogleUser"]);
+        //            DataTable dt = new DataTable();
+        //            dt = objTeachersBAL.TeacherDetaiolsByID();
+        //            if (dt.Rows.Count > 0)
+        //            {
+        //                Session["SchoolID"] = Convert.ToString(dt.Rows[0]["SchoolID"]);
+        //                Session["IsTeacher"] = Convert.ToString(dt.Rows[0]["IsTeacher"]);
+        //                Session["EmailID"] = Convert.ToString(dt.Rows[0]["EmailID"]);
+        //                Session["TeacherUserID"] = Convert.ToString(dt.Rows[0]["ID"]);
+        //                Session["TeacherName"] = Convert.ToString(dt.Rows[0]["FirstName"]) + " " + Convert.ToString(dt.Rows[0]["LastName"]);
+        //                Session["IsGoogleUser"] = Convert.ToString(dt.Rows[0]["IsGoogleUser"]);
 
-                        DataSet dsSchool = new DataSet();
-                        SchoolBAL objSchoolBAL = new SchoolBAL();
-                        dsSchool = objSchoolBAL.GetCurrentSemester(RequestedSchoolURL);
-                        if (dsSchool.Tables[0].Rows.Count > 0)
-                        {
-                            Session["SchoolCurrentYear"] = Convert.ToString(dsSchool.Tables[0].Rows[0]["CurrentYear"]);
-                            Session["SchoolCurrentSemester"] = Convert.ToString(dsSchool.Tables[0].Rows[0]["SemesterNo"]);
-                        }
+        //                DataSet dsSchool = new DataSet();
+        //                SchoolBAL objSchoolBAL = new SchoolBAL();
+        //                dsSchool = objSchoolBAL.GetCurrentSemester(RequestedSchoolURL);
+        //                if (dsSchool.Tables[0].Rows.Count > 0)
+        //                {
+        //                    Session["SchoolCurrentYear"] = Convert.ToString(dsSchool.Tables[0].Rows[0]["CurrentYear"]);
+        //                    Session["SchoolCurrentSemester"] = Convert.ToString(dsSchool.Tables[0].Rows[0]["SemesterNo"]);
+        //                }
 
-                    }
-                    else
-                    {
-                        if (cookie != null)
-                        {
-                            RemoveCookieAndSession();
-                            //cookie.Expires = DateTime.Now.AddDays(-3);
-                            //HttpContext.Current.Response.Cookies.Add(cookie);
-                        }
-                    }
-                }
-            }
-        }
-        if (Session["SchoolCurrentYear"] == null)
-        {
-            DataSet ds = new DataSet();
-            SchoolBAL objSchoolBAL = new SchoolBAL();
-            ds = objSchoolBAL.GetCurrentSemester(RequestedSchoolURL);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                Session["SchoolCurrentYear"] = Convert.ToString(ds.Tables[0].Rows[0]["CurrentYear"]);
-                Session["SchoolCurrentSemester"] = Convert.ToString(ds.Tables[0].Rows[0]["SemesterNo"]);
-            }
-        }
+        //            }
+        //            else
+        //            {
+        //                if (cookie != null)
+        //                {
+        //                    RemoveCookieAndSession();
+        //                    //cookie.Expires = DateTime.Now.AddDays(-3);
+        //                    //HttpContext.Current.Response.Cookies.Add(cookie);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+        //if (Session["SchoolCurrentYear"] == null)
+        //{
+        //    DataSet ds = new DataSet();
+        //    SchoolBAL objSchoolBAL = new SchoolBAL();
+        //    ds = objSchoolBAL.GetCurrentSemester(RequestedSchoolURL);
+        //    if (ds.Tables[0].Rows.Count > 0)
+        //    {
+        //        Session["SchoolCurrentYear"] = Convert.ToString(ds.Tables[0].Rows[0]["CurrentYear"]);
+        //        Session["SchoolCurrentSemester"] = Convert.ToString(ds.Tables[0].Rows[0]["SemesterNo"]);
+        //    }
+        //}
         
-        if (!GeneralBAL.ValidateSchoolTeacher(Convert.ToInt32(Session["SchoolID"]), Convert.ToInt32(Session["TeacherUserID"])))
-        {
-            RemoveCookieAndSession();
-            Response.Redirect(Config.WebSiteUrl + Convert.ToString(Request["c1"]).ToLower() + "/login.aspx", true);
-        }
+        //if (!GeneralBAL.ValidateSchoolTeacher(Convert.ToInt32(Session["SchoolID"]), Convert.ToInt32(Session["TeacherUserID"])))
+        //{
+        //    RemoveCookieAndSession();
+        //    Response.Redirect(Config.WebSiteUrl + Convert.ToString(Request["c1"]).ToLower() + "/login.aspx", true);
+        //}
 
-        // Response.Redirect(Config.WebSiteUrl + Convert.ToString(Request["c1"]).ToLower() + "/login.aspx", true);
+        //// Response.Redirect(Config.WebSiteUrl + Convert.ToString(Request["c1"]).ToLower() + "/login.aspx", true);
 
     }
 
