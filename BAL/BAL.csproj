@@ -136,6 +136,7 @@
     <Compile Include="PreviousSemesterResultBAL.cs" />
     <Compile Include="QuestionSubHeadingSkillsBAL.cs" />
     <Compile Include="QuestionSubHeadingBAL.cs" />
+    <Compile Include="UserManagementBAL.cs" />
     <Compile Include="TenantAdminBAL.cs" />
     <Compile Include="TenantBAL.cs" />
     <Compile Include="SchoolBAL.cs" />

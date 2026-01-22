@@ -114,7 +114,7 @@ var DataTablesDemo = /*#__PURE__*/ function () {
                     {
                         targets: 0,
                         render: function render(data, type, row, meta) {
-                            return "<a href=\"tenant-modify.aspx?id=" + row.ID + "\" class=\"mr-1\">" + getFullName(row) + "</a>";                            
+                            return "<a href=\"user-management-modify.aspx?id=" + row.ID + "\" class=\"mr-1\">" + getFullName(row) + "</a>";                            
                         }
                     },
                     {                        
@@ -126,7 +126,7 @@ var DataTablesDemo = /*#__PURE__*/ function () {
                     {
                         targets: 4,
                         render: function render(data, type, row, meta) {                            
-                            return "<a class='btn btn-sm btn-icon btn-secondary' href='teacher-modify.aspx?id=" + row.ID + "'><i class=\"fa fa-pencil-alt\"></i></a>";                                
+                            return "<a class='btn btn-sm btn-icon btn-secondary' href='user-management-modify.aspx?id=" + row.ID + "'><i class=\"fa fa-pencil-alt\"></i></a>";                                
                         }
                     },
                     {

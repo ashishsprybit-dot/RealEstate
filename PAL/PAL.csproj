@@ -65,6 +65,7 @@
     <Compile Include="QuestionSubHeadingSkillsPAL.cs" />
     <Compile Include="QuestionSubHeadingPAL.cs" />
     <Compile Include="SchoolConfigurationPAL.cs" />
+    <Compile Include="UserManagementPAL.cs" />
     <Compile Include="TenantAdminPAL.cs" />
     <Compile Include="TenantPAL.cs" />
     <Compile Include="SchoolPAL.cs" />

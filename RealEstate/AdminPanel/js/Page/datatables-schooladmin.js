@@ -35,6 +35,7 @@ var DataTablesDemo = /*#__PURE__*/ function () {
     }
 
     function getStatus(data, type, dataToSet) {
+        debugger;
         if (data.Status == true)
             return 'Active';
         else
@@ -77,12 +78,6 @@ var DataTablesDemo = /*#__PURE__*/ function () {
                 pageLength: 25,
                 order: [1, 'asc'],
                 columns: [
-                    //{
-                    //    data: 'ID',
-                    //    className: 'col-checker align-middle',
-                    //    orderable: false,
-                    //    searchable: false
-                    //},
                     {
                         data: 'TenantName',
                         className: 'align-middle'
@@ -95,15 +90,7 @@ var DataTablesDemo = /*#__PURE__*/ function () {
                         data: 'EmailID',
                         className: 'align-middle'
                     },
-                    {
-                        //data: 'Phone',
-                        data: 'IsAPIAccess',
-                        className: 'align-middle'
-                    },
-                    //{
-                    //    data: 'AccountType',
-                    //    className: 'align-middle'
-                    //},
+                    
                     {
                         data: "Status",
                         className: 'align-middle text-center',
@@ -123,38 +110,27 @@ var DataTablesDemo = /*#__PURE__*/ function () {
                 ],
                 columnDefs: [                   
                     {
-                        targets: 1,
+                        targets: 0,
                         render: function render(data, type, row, meta) {
                             return "<a href=\"tenant-admin-modify.aspx?id=" + row.ID + "\" class=\"mr-1\">" + getFullName(row) + "</a>";                            
                         }
                     },
-                    {
-                        targets: 3,
-                        render: function render(data, type, row, meta) {
-                            if (row.IsAPIAccess === true) {
-                                return "<span class='badge badge-lg badge-success'>Yes</span>";
-                            }
-                            else {
-                                return "<span class='badge badge-lg badge-danger'>No</span>";
-                            }
-                            
-                        }
-                    },
+                    
                     {                        
-                        targets: 5,
+                        targets: 3,
                         render: function render(data, type, row, meta) {
                             return "<span class='badge badge-lg badge-" + row.StatusTextColor + "'>" + row.StatusText + "</span>";
                             //return "<a data-toggle='tooltip' data-placement='bottom' title='Click to change status' href='javascript:;' id='lnk" + row.ID  + "' onclick='GridOperation(" + divMsg + ",\"" + (row.Status == true ? "inactive" : "active") + "\"," + row.ID + ");' ><span class='list-icon'><span class='" + (row.Status == true ? 'oi oi-circle-check text-success' : 'oi oi-circle-x text-red') + "'></span></span></a>";
                         }
                     },
                     {
-                        targets: 6,
+                        targets: 4,
                         render: function render(data, type, row, meta) {                            
                             return "<a data-toggle='tooltip' data-placement='bottom' title='Edit' class='btn btn-sm btn-icon btn-secondary' href='tenant-admin-modify.aspx?id=" + row.ID + "'><i class=\"fa fa-pencil-alt\"></i></a>";                                
                         }
                     },
                     {
-                        targets: 7,
+                        targets: 5,
                         render: function render(data, type, row, meta) {
                             return "<a data-toggle='tooltip' data-placement='bottom' title='Delete' class='btn btn-sm btn-icon btn-secondary' href='javascript:void(0)'  onclick='GridOperation(" + divMsg + ",\"remove\"," + row.ID + ");' ><i class=\"far fa-trash-alt\"></i></a><a class='datatable-delete lnkdelete" + row.ID + "' href='javascript:;' style='display: none;'>Delete</a>";
                         }

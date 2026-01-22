@@ -194,7 +194,7 @@
                                     </ul>   </li>
                                 </FooterTemplate>--%>
                             </asp:Repeater>
-                            <asp:Repeater ID="rptHomeGroups" runat="server" Visible="false">
+                          <%--  <asp:Repeater ID="rptHomeGroups" runat="server" Visible="false">
                                 <HeaderTemplate>
                                     <li class="menu-header">ASSESSMENTS</li>
                                 </HeaderTemplate>
@@ -254,7 +254,7 @@
                                         </a>
                                     </li>
                                 </ItemTemplate>
-                            </asp:Repeater>
+                            </asp:Repeater>--%>
                         </ul>
                         <!-- /.menu -->
                     </nav>

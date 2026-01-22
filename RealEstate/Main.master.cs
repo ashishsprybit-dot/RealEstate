@@ -130,21 +130,19 @@ public partial class JudgementTool_Main : AdminPageSetting
     {
         string SURL = Convert.ToString(Request["c1"]);
 
-        //DataTable dt = new DataTable();
-        //TeachersBAL objTeachersBAL = new TeachersBAL();
+        DataTable dt = new DataTable();
+        TenantBAL objTenantBALL = new TenantBAL();
+         
+        dt = objTenantBALL.TenantPageRights();
 
-        //if (Session["TeacherUserID"] != null)
-        //    objTeachersBAL.ID = Convert.ToInt32(Session["TeacherUserID"]);
-        //dt = objTeachersBAL.TeacherPageRights();
+        DataView dv = new DataView(dt);
+        dv.RowFilter = "ShowinMenu=1 and ParentName='Modules'";
 
-        //DataView dv = new DataView(dt);
-        //dv.RowFilter = "ShowinMenu=1 and ParentName='Modules'";
-
-        //if (dv.Count > 0)
-        //{
-        //    rptModules.DataSource = dv;
-        //    rptModules.DataBind();
-        //}
+        if (dv.Count > 0)
+        {
+            rptModules.DataSource = dv;
+            rptModules.DataBind();
+        }
 
         //dv = new DataView(dt);
         //dv.RowFilter = "ShowinMenu=1 and ParentName='Results'";
@@ -172,7 +170,7 @@ public partial class JudgementTool_Main : AdminPageSetting
         //{
         //    rptHomeGroups.Visible = false;
         //}
-        
+
         ////--------------------- Reports --------------------------------
 
         //dv = new DataView(dt);

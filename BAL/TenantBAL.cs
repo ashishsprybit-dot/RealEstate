@@ -72,6 +72,12 @@
             return DbConnectionDAL.GetDataSet(CommandType.StoredProcedure, "TenantLogin", dbParam);
         }
 
+        public DataTable TenantPageRights()
+        {            
+            return DbConnectionDAL.GetDataTable(CommandType.StoredProcedure, "TenantPageRights");
+        }
+
+
     }
 }
 

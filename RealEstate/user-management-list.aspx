@@ -1,18 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPanel/Admin.master" AutoEventWireup="true" CodeFile="tenant-admin-list.aspx.cs" Inherits="AdminPanel_SchoolAdmin_List" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeFile="user-management-list.aspx.cs" Inherits="Main_Teacher_List" %>
 
 <%@ Register TagName="Paging" TagPrefix="Ctrl" Src="~/AdminPanel/includes/ListPagePagging.ascx" %>
-
-<%@ MasterType VirtualPath="~/AdminPanel/Admin.master" %>
+<%@Import Namespace="Utility" %>
+<%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHHeader" runat="Server"></asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHContent" runat="Server">
     <header class="page-title-bar">
         <div class="d-flex justify-content-between">
-            <h1 class="page-title">Tenant Admins List </h1>
+            <h1 class="page-title">User Tenant List </h1>
             <div class="btn-toolbar">
-                <button type="button" class="btn btn-primary" onclick="window.location.href='tenant-admin-modify.aspx'">Add Tenant Admin</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='user-management-modify.aspx'">Add New</button>
             </div>
         </div>
-         <%--<p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>--%>
+         <p class="text-muted">It is recommended that teachers are added using their DET Google Account. To do this get them to first go to your homepage and click <b>Sign Up</b> and then <b>Sign Up With Google</b>. Teachers can also be added manually by using the <b>Add New</b> button. </p>
     </header>
     <!-- /.page-title-bar -->
     <div class="alert alert-danger hide" id="divMsg" runat="server" style="display: none;"></div>
@@ -30,9 +30,10 @@
                         <div class="input-group-prepend">
                             <select id="filterBy" class="custom-select">
                                 <option value='' selected>Filter By </option>
-                                <option value="0">Tenant</option>
-                                <option value="1">Name</option>
-                                <option value="2">Email Address</option>                                
+                                <option value="0">Full Name</option>                                
+                                <option value="1">Email Address</option>
+                                <option value="2">Phone</option>
+                                <option value="3">Status</option>
                             </select>
                         </div>
                         <!-- /.input-group-prepend -->
@@ -42,7 +43,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span>
                             </div>
-                            <input id="table-search" type="text" class="form-control" placeholder="Search Tenant Admin">
+                            <input id="table-search" type="text" class="form-control" placeholder="Search Tenant Users">
                         </div>
                         <!-- /.input-group -->
                     </div>
@@ -58,10 +59,11 @@
                     <!-- thead -->
                     <thead>
                         <tr>                           
-                            <th>Tenant</th>
-                            <th>Full Name</th>
+                            <th>Full Name</th>                            
                             <th>Email Address </th>
-                            <th width="70" class="text-center">Status </th>
+                            <th>Phone </th>
+                            <th>Account Type</th>
+                            <th width="150" class="text-center">Status </th>
                             <th width="70" class="text-center">Edit </th>
                             <th width="70" class="text-center">Delete </th>
                         </tr>
@@ -86,12 +88,12 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="CPHFooter" runat="Server">
-    <script src="../js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <%--<script src="../js/jquery-1.10.2.min.js" type="text/javascript"></script>--%>
     <script type="text/javascript">
         var page = 1;
-        var SortColumn = '<%= SortColumn %>';
-        var SortType = '<%= SortType %>';
-        var PageUrl = 'tenant-admin-list.aspx';
+        var SortColumn = 'ID';
+        var SortType = 'ASC';
+        var PageUrl = 'user-management-list.aspx';
         var FormName = 'frmSearch';
         var RspCtrl = 'DivRender';
         var divMsg = '<%= divMsg.ClientID %>';
@@ -99,7 +101,12 @@
         var userdata = <%= data %>;
     </script>
     <!-- BEGIN PAGE LEVEL JS -->
-    <script src="assets_1/javascript/pages/dataTables.bootstrap.js"></script>
-    <script src="js/Page/datatables-schooladmin.js"></script>
-
+    <script src="<%=Config.VirtualDir %>assets/javascript/pages/dataTables.bootstrap.js"></script>
+    <script src="<%=Config.VirtualDir %>js/Page/datatables-teacher.js"></script>
+    <script type="text/javascript">
+        function SetTeacherCount() {
+            var count = $('.badge-teacher').text();
+            $('.badge-teacher').text(parseInt(count) - 1);
+        }
+    </script>
 </asp:Content>
