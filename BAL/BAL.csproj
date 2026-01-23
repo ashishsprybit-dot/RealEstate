@@ -133,6 +133,7 @@
     <Compile Include="JudgementAuthentication.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="LeadBAL.cs" />
     <Compile Include="PreviousSemesterResultBAL.cs" />
     <Compile Include="QuestionSubHeadingSkillsBAL.cs" />
     <Compile Include="QuestionSubHeadingBAL.cs" />

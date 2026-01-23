@@ -3,289 +3,380 @@
 <%@ Import Namespace="Utility" %>
 <%@ MasterType VirtualPath="~/Main.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHHeader" runat="Server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHContent" runat="Server">
     <header class="page-title-bar">
-        <h1 class="page-title">Hi <%=Session["TeacherName"] %> </h1>
-        <div id="divAdmin" runat="server" visible="false">
 
-            <p class="text-muted">Manage your users, home groups, students and more.</p>
-
-            <div class="row teacherdashboard">
-                <%--  <div class="masonry-item col-lg-3">
-                    <!-- .card -->
-                    <div class="card card-fluid">
-                        <div class="card-body">
-                            <div class="media align-items-center">
-                                <div class="col-auto">
-                                    <a class="user-avatar user-avatar-xl dashboard-icon">
-                                        <img src="<%=Config.VirtualDir %>images/icons/dashboard_user_icon.svg" alt=""></a>
-                                </div>
-                                <div class="col">
-                                    <span>Users</span>
-                                    <h2><%=Teachers %></h2>
-                                </div>
-                            </div>                           
-                        </div>                        
-                    </div>
-                </div>--%>
-                <div class="masonry-item col-lg-3">
-                    <!-- .card -->
-                    <div class="card card-fluid">
-                        <div class="card-body">
-                            <div class="media align-items-center">
-                                <div class="col-auto">
-                                    <a class="user-avatar user-avatar-xl dashboard-icon">
-                                        <img src="<%=Config.VirtualDir %>images/icons/dashboard_home_group_icon.svg" alt=""></a>
-                                </div>
-                                <div class="col">
-                                    <span>Home Groups</span>
-                                    <h2><a href="<%=Config.WebSiteUrl + SchoolURL %>/home-group-list.aspx" class="clrblack"><%=HomeGroups %></a></h2>
-                                </div>
-                            </div>
-                            <!-- /grid row -->
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-                <div class="masonry-item col-lg-3">
-                    <!-- .card -->
-                    <div class="card card-fluid">
-                        <div class="card-body">
-                            <div class="media align-items-center">
-                                <div class="col-auto">
-                                    <a class="user-avatar user-avatar-xl dashboard-icon">
-                                        <img src="<%=Config.VirtualDir %>images/icons/dashboard_student_icon.svg" alt=""></a>
-                                </div>
-                                <div class="col">
-                                    <span>My Students</span>
-                                    <h2><a href="<%=Config.WebSiteUrl + SchoolURL %>/student-list.aspx" class="clrblack"><%=Students %></a></h2>
-                                </div>
-                            </div>
-                            <!-- /grid row -->
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-              <%--  <div class="masonry-item col-lg-3">
-                    <!-- .card -->
-                    <div class="card card-fluid">
-                        <div class="card-body">
-                            <div class="media align-items-center">
-                                <div class="col-auto">
-                                    <a class="user-avatar user-avatar-xl dashboard-icon">
-                                        <img src="<%=Config.VirtualDir %>images/icons/dashboard_student_icon.svg" alt=""></a>
-                                </div>
-                                <div class="col">
-                                    <span style="display: block; width: 137px;">Assessment Pending</span>
-                                    <h2 class="orange"><a href="<%=Config.WebSiteUrl + SchoolURL %>/home-group-list.aspx"><%=PendingStudents %></a></h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>--%>
-            </div>
-
-            <%--   <hr />--%>
+        <div class="d-flex justify-content-between">
+            <h1 class="page-title">Dashboard</h1>
+           <%-- <div class="btn-toolbar">
+                <asp:Button ID="btnAddNew" runat="server" CssClass="btn btn-primary" Text="Add New" OnClientClick="window.location.href='new-lead.aspx'; return false;" />
+            </div>--%>
         </div>
-        <div class="d-flex flex-column flex-md-row">
-            <p class="lead">
-                When completing student judgements, consider the criteria and sources of evidence below and think about the various ways that students can demonstrate competency in each of the elaborations.            
-            </p>
-        </div>
-        <br />
-        <h4 class="mb-3">Curriculum Level Tracker Summary</h4>
     </header>
 
-    <div class="page-section">
-        <!-- .section-block -->
-        <div class="section-block">
-            <div class="metric-row">
-                <div class="col-lg-12">
-                    <div class="metric-row metric-flush dashboard">
-                        <div class="col">
-                            <div class="card card-fluid text-center1">
+    <div id="divMsg" runat="server" visible="false" class="alert" style="display: none;"></div>
 
-                                <div class="card-body teacherdashboard">
-                                    <div>
-                                        <p>
-                                            The Curriculum Level Tracker (CLT) supports the collection of evidence for individual students in order for teachers to determine an accurate Victorian Curriculum Level. Three pieces of evidence, from formal or informal assessment sources, are required as evidence against each content descriptor. A date and description must be provided for each piece of evidence. Attachments (pictures, videos, documents etc.) may be provided to support the evidence. The tracker will calculate a percentage of the level completed. Students will remain in their current level until the teacher ticks the ‘Move to Next Level’ box at the bottom of the page. The teacher may do this once at least 80% of the current level they are working within has been achieved. 
-                                        </p>
-
-                                        <blockquote>
-                                            <p>
-                                                <b>NOTE:</b> Evidence can be documented in levels above the current level that a student is working within. For example, if a student has a <i>Score</i> of A.53 (working within Level A) and evidence is provided for one content descriptor within Level B, their <i>Score</i> will increase to somewhere around A.60 (this figure will vary depending on the amount of content descriptors in that particular area). Providing evidence, in any levels, will only increase the <i>Score</i> up to 99% (eg. A.99). Any evidence provided after this point will not be reflected in the <i>Score</i> until the teacher has checked the ‘Move Student to Next Level’ box.
-                                            </p>
-                                        </blockquote>
-
-                                        <p>
-                                            As the student’s <i>Score</i> can be changed by levels above their current working level, two graphs will be shown on their assessment page to outline the difference between their <i>Score</i> and their completion of the current level.
-                                        </p>
-                                        <p>
-                                            1. The ‘<i>Completion of Level</i>’ Graph: Shows the percentage of completion for the level the student is currently working within. ie. 60% of Level C.<br />
-                                            2. The ‘<i>Score</i>’ Graph: Shows the student’s calculated Victorian Curriculum score, based on evidence provided in the current level AND any levels above.
-
-                                        </p>
-                                        <p>
-                                            <b>Not Priority Learning:</b> This option is only used to narrow the scope of learning for a student in order to focus attention on and or progress them along the sequence of their priority learning. Using this option removes that particular content descriptor from the curriculum level calculation. Relevant school leaders should be consulted before this option is used. 
-                                        </p>
-                                        <p>
-                                            <b>Submitting Results:</b> Evidence can be collected and entered throughout the semester. At the end of the semester, the teacher needs to <i>Submit</i> the class results. The submission signifies that all necessary evidence has been provided for that semester and no further change will be made. A final submission date should be decided upon by the school towards the end of the semester, as the final Scores will be required for end of semester reporting. The CLT School Administrator should check that all classes have been submitted on the submission date.
-
-                                        </p>
-                                        <p>
-                                            <b>Victorian Curriculum Reporting:</b> Although CLT scores will be more accurate in showing student growth, a ‘rounded’ Victorian Curriculum Score will need to be provided to the Department of Education at the end of each semester via your end of semester reporting. For this purpose, the score should always be rounded DOWN to the nearest possible Victorian Curriculum score. For example:
-                    <br />
-                                            <br />
-                                            Levels A – C: .00 – .99 = Round down to zero. 
-                    <br />
-                                            eg. A.15 = A, A.99 = A<br />
-                                            <br />
-                                            Levels D+ :	.00 – .49 = Round down to zero	.50 - .99 = Round down to .5<br />
-                                            eg. D.15 = D, D.99 = D.5<br />
-                                            eg. 1.49 = 1, 1.80 = 1.5
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- metric row -->
-            <%--<div class="metric-row">
-                <div class="col-lg-12">
-                    <div class="metric-row metric-flush dashboard">
-                        <div class="col">
-                            <div class="card card-fluid">
-                                <div class="card-header"><i class="fa fa-ban text-info"></i></div>
-                                <div class="card-body">
-                                    The student is <span class="text-info">unable</span> to demonstrate competence in any of the elaborations.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-fluid">
-                                <div class="card-header"><i class="fa fa-circle-notch text-muted-circle"></i></div>
-                                <div class="card-body">
-                                    The student has <span class="text-muted">not yet</span> attempted any of the elaborations.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-fluid">
-                                <div class="card-header"><i class="fa fa-star text-danger"></i></div>
-                                <div class="card-body">
-                                    The student demonstrates competence in a <span class="text-danger">few</span> of the elaborations with a <span class="text-danger">high level</span> of verbal, visual or gestural prompting in <span class="text-danger">one</span> environment with <span class="text-danger">one</span> familiar adult.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-fluid">
-                                <div class="card-header"><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i></div>
-                                <div class="card-body">
-                                    The student demonstrates competence in <span class="text-warning">most</span> of the elaborations with a <span class="text-warning">moderate level</span> of verbal, visual or gestural prompting in <span class="text-warning">two or more</span> environment with <span class="text-warning">two</span> familiar adults.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-fluid">
-                                <div class="card-header"><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i></div>
-                                <div class="card-body">
-                                    The student demonstrates competence in <span class="text-success">all</span> of the elaborations with a <span class="text-success">little or no</span> verbal, visual or gestural prompting across <span class="text-success">many</span> environments with <span class="text-success">familiar and unfamiliar</span> adults.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>--%>
-            <!-- metric column -->
-            <h4 class="mb-3">Sources of Evidence</h4>
-            <div class="metric-row">
-                <div class="col-lg-12">
-                    <div class="metric-row metric-flush">
-
-                        <div class="col">
-                            <!-- .metric -->
-                            <div class="metric metric-bordered align-items-center1">
-                                <ul class="list-unstyled1">
-                                    <li>Informal observations</li>
-                                    <li>Annotated work samples</li>
-                                    <li>Photo evidence</li>
-                                    <li>Video evidence</li>
-                                    <li>Cross-checks</li>
-                                    <li>Rubrics</li>
-                                    <li>Student notes</li>
-                                </ul>
-                            </div>
-                            <!-- /.metric -->
-                        </div>
-
-                        <div class="col">
-                            <!-- .metric -->
-                            <div class="metric metric-bordered align-items-center1">
-                                <ul class="list-unstyled1">
-                                    <li>ABLES</li>
-                                    <li>Observation surveys</li>
-                                    <li>Running records</li>
-                                    <li>On-Demand assessments</li>
-                                    <li>Maths Online Interviews</li>
-                                    <li>English Online Interviews</li>
-                                    <li>Oxford Numeracy Assessments</li>
-                                </ul>
-                            </div>
-                            <!-- /.metric -->
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <%--<div class="metric-row">
-                <div class="col-lg-12">
-                    <div class="metric-row metric-flush dashboard">
-                        <div class="col">
-                            <div class="card card-fluid text-center1">
-
-                                <div class="card-body">
-                                    <ul class="list-unstyled1">
-                                        <li>Informal observations</li>
-                                        <li>Annotated work samples</li>
-                                        <li>Photo evidence</li>
-                                        <li>Video evidence</li>
-                                        <li>Cross-checks</li>
-                                        <li>Rubrics</li>
-                                        <li>Student notes</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card card-fluid text-center1">
-
-                                <div class="card-body">
-                                    <ul class="list-unstyled1">
-                                        <li>ABLES</li>
-                                        <li>Observation surveys</li>
-                                        <li>Running records</li>
-                                        <li>On-Demand assessments</li>
-                                        <li>Maths Online Interviews</li>
-                                        <li>English Online Interviews</li>
-                                        <li>Oxford Numeracy Assessments</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>--%>
-            <!-- /metric column -->
-        </div>
-        <!-- /metric row -->
+<div class="row">
+    <div class="col-12">
+        <div id="divStatusCards" runat="server" class="status-card-wrapper"></div>
     </div>
-    <!-- /.section-block -->
+</div>
+
+
+
+    <asp:HiddenField ID="hfSelectedStatus" runat="server" />
+
+    <div class="page-section">
+        <div class="card card-fluid">
+                <div class="row">
+            </div>
+    </div>
+
+    <div id="remarksModal" class="modal" tabindex="-1" role="dialog" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header" style="padding-bottom: 3px;">
+                    <h5 class="modal-title">Remarks</h5>
+
+                    <button type="button" class="close" onclick="closeRemarksModal()">&times;</button>
+                </div>
+
+                <div class="modal-body d-flex flex-column" style="height: 400px; padding-bottom: 1.5rem;">
+                    <span class="spnDescription" style="background: #f6f7f9 !important; padding: 10px 10px 10px 10px; margin-bottom: 10px;"></span>
+
+                    <div id="remarksList" class="flex-grow-1 mb-3" style="overflow-y: auto;">
+                        <div class="text-muted text-center" id="noRemarksText">No remarks yet.</div>
+                    </div>
+
+                    <div class="d-flex mt-auto gap-2">
+                        <input type="hidden" id="hdnCurrentLeadId" name="hdnCurrentLeadId" class="hdnCurrentLeadId" />
+                        <input type="text" id="newRemark" class="form-control" placeholder="Type your message..." style="margin-right: 10px" />
+                        <button class="btn btn-primary" id="btnSaveRemark" type="button" disabled>Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="historyModal" class="modal" tabindex="-1" style="display: none;">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lead History</h5>
+                    <div class="clearfix"></div>
+                    <hr />
+                    <button type="button" class="close" onclick="$('#historyModal').hide();">&times;</button>
+                </div>
+                <div class="modal-body" id="historyList" style="max-height: 400px; overflow-y: auto;">
+                </div>
+                <div class="text-center text-muted" id="noHistoryText" style="display: none">
+                    No history found.<br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="CPHFooter" runat="Server">
+    <%-- <script src="../js/jquery-1.10.2.min.js" type="text/javascript"></script>--%>
+    <script>
+        var currentLeadId = 0;
+
+        $(document).ready(function () {
+            $("#searchInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+
+            $('.open-remarks').click(function () {
+                const leadId = $(this).data('id');
+                loadRemarks(leadId);
+                if ($(this).data('desc') != '') {
+                    $('.spnDescription').html('<b>Description: </b>' + $(this).data('desc'));
+                    $('.spnDescription').show();
+                }
+                else {
+                    $('.spnDescription').hide();
+                }
+            });
+
+            $('#btnSaveRemark').click(saveRemark);
+
+            $(document).on('change', '.ddl-status', function () {
+                var leadId = $(this).closest("tr").find("input[id*='hfLeadId']").val();
+                var newStatus = $(this).val();
+
+                if (newStatus === "") return;
+
+                $.ajax({
+                    type: "POST",
+                    url: "dash-board.aspx/UpdateStatus",
+                    data: JSON.stringify({ leadId: leadId, status: newStatus }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    error: function () {
+                        alert("Error while updating status.");
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $('#newRemark').on('input', function () {
+                const value = $(this).val().trim();
+                $('#btnSaveRemark').prop('disabled', value === '');
+            });
+        });
+
+        function closeRemarksModal() {
+            $('#remarksModal').hide();
+            $('#remarksList').html('');
+            $('#newRemark').val('');
+        }
+
+        function loadRemarks(leadId) {
+            currentLeadId = leadId;
+            $('.hdnCurrentLeadId').val(currentLeadId);
+            $.ajax({
+                type: "POST",
+                url: "dash-board.aspx/GetRemarks",
+                data: JSON.stringify({ leadId: leadId }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    const remarks = response.d || [];
+                    const container = $('#remarksList');
+                    container.html('');
+                    remarks.forEach(function (item) {
+                        $('#remarksList').append(`
+                        <div class="mb-3" style="font-size: 0.9rem;">
+                            <div>${item.RemarkText}</div>
+                            <div><small class="text-muted">${item.UserID} • ${item.RemarkDate}</small></div>
+                        </div>
+                    `);
+                    });
+
+                    $('#remarksModal').show();
+                },
+                error: function () {
+                    alert("Error loading remarks.");
+                }
+            });
+        }
+
+        function saveRemark() {
+            const remark = $('#newRemark').val();
+            if (!remark.trim()) return;
+
+            currentUserId = $('.hdnCurrentLeadId').val();
+
+            $.ajax({
+                type: "POST",
+                url: "dash-board.aspx/SaveRemark",
+                data: JSON.stringify({ leadId: currentLeadId, remarkText: remark, userId: currentUserId }),
+                contentType: "application/json;",
+                dataType: "json",
+                success: function () {
+                    $('#newRemark').val('');
+                    loadRemarks(currentLeadId);
+                },
+                error: function () {
+                    alert("Error saving remark.");
+                }
+            });
+        }
+
+        $('.open-history').click(function () {
+            var leadId = $(this).data('id');
+
+            $.ajax({
+                type: "POST",
+                url: "dash-board.aspx/GetLeadHistory",
+                data: JSON.stringify({ leadId: leadId }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var history = response.d;
+                    var container = $('#historyList');
+                    container.html('');
+
+                    if (history.length === 0) {
+                        $('#noHistoryText').show();
+                    } else {
+                        $('#noHistoryText').hide();
+
+                        history.forEach(function (item) {
+                            var changeText = "";
+                            if (item.OldValue !== item.NewValue) {
+                                changeText = `<div>Changed from "${item.OldValue}" to "${item.NewValue}"</div>`;
+                            }
+                            else {
+                                changeText = `<div>${item.NewValue}</div>`;
+                            }
+
+                            container.append(`
+                        <div class="mb-3">
+                            <div style="color: #007bff; font-weight: bold;">${item.FieldName} Updated</div>
+                            <div><small>By: ${item.UpdatedBy}</small></div>
+                            <div><small>Date: ${item.UpdatedDate}</small></div>
+                             ${changeText}
+                            <hr />
+                        </div>
+                    `);
+                        });
+                    }
+
+                    $('#historyModal').show();
+                },
+                error: function () {
+                    alert("Failed to load history.");
+                }
+            });
+        });
+
+        window.onload = function () {
+            var msgDiv = document.getElementById('<%= divMsg.ClientID %>');
+            if (msgDiv && msgDiv.innerHTML.trim() !== "") {
+                msgDiv.style.display = "block";
+
+                setTimeout(function () {
+                    msgDiv.style.display = "none";
+
+                    if (window.history.replaceState) {
+                        const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                        window.history.replaceState({}, document.title, cleanUrl);
+                    }
+                }, 2000);
+            }
+        };
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape") {
+                let modal = document.getElementById('remarksModal');
+                if (modal.style.display === 'block') {
+                    closeRemarksModal();
+                }
+
+                let hmodal = document.getElementById('historyModal');
+                if (hmodal.style.display === 'block') {
+                    $('#historyModal').hide();
+                }
+
+            }
+        });
+
+        function filterByStatus(card) {
+            var status = $(card).attr('data-status');
+            $('#<%= hfSelectedStatus.ClientID %>').val(status);
+           __doPostBack('ShowLeadsByStatus', status);
+           $('.status-card').removeClass('active');
+           $(card).addClass('active');
+        }
+
+        $(document).ready(function () {
+            var selectedStatus = $('#<%= hfSelectedStatus.ClientID %>').val();
+            $('.status-card').each(function () {
+                if ($(this).attr('data-status') === selectedStatus) {
+                    $(this).addClass('active');
+                } else {
+                    $(this).removeClass('active');
+                }
+            });
+        });
+
+        function filterByStatus(card) {
+            var status = $(card).attr('data-status');
+            if (status) {
+                window.location.href = 'lead-list.aspx?status=' + encodeURIComponent(status);
+            }
+        }
+
+        function fetchNotifications() {
+            $.ajax({
+                type: "POST",
+                url: "dash-board.aspx/GetNotifications",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var messages = response.d;
+                    if (messages.length > 0) {
+                        showNotificationsSequentially(messages);
+                    }
+                }
+            });
+        }
+
+        function showNotificationsSequentially(messages) {
+            let index = 0;
+
+            function showNext() {
+                if (index >= messages.length) return;
+
+                showToast(messages[index], function () {
+                    index++;
+                    setTimeout(showNext, 1000);
+                });
+            }
+
+            showNext();
+        }
+
+        function showToast(message, onHide) {
+            var toast = $('<div class="toast-popup"><span class="toast-icon">&#128276;</span> <span class="toast-message">' + message + '</span></div>');
+            $("body").append(toast);
+
+            toast.css({
+                position: "fixed",
+                bottom: "100px",
+                right: "30px",
+                background: "#006ec2",
+                color: "#fff",
+                padding: "20px 30px",
+                borderRadius: "12px",
+                boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+                zIndex: 9999,
+                cursor: "pointer",
+                fontSize: "16px",
+                maxWidth: "400px",
+                lineHeight: "1.5",
+                fontFamily: "Segoe UI, Arial, sans-serif",
+                fontWeight: "500",
+                letterSpacing: "0.3px",
+                textAlign: "left",
+                display: "flex",
+                alignItems: "center"
+            });
+
+            toast.find('.toast-icon').css({
+                marginRight: "12px",
+                fontSize: "20px"
+            });
+
+            toast.click(function () {
+                window.location.href = "lead-list.aspx";
+            });
+
+            setTimeout(function () {
+                toast.fadeOut(700, function () {
+                    $(this).remove();
+                    if (typeof onHide === "function") {
+                        onHide();
+                    }
+                });
+            }, 7000);
+        }
+
+        setInterval(fetchNotifications, 3000);
+
+    </script>
 </asp:Content>
 
