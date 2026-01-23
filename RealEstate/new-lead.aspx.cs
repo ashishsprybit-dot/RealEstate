@@ -23,7 +23,7 @@ public partial class new_lead : System.Web.UI.Page
                 if (int.TryParse(Request.QueryString["LeadID"], out leadId))
                 {
                     LoadLeadData(leadId);
-                    btnSave.Text = "Update Lead"; // Change button text to indicate update
+                   // btnSave.Text = "Update Lead"; // Change button text to indicate update
                 }
             }
         }
@@ -31,7 +31,7 @@ public partial class new_lead : System.Web.UI.Page
 
     private void LoadLeadData(int leadId)
     {
-        if (Session["TenantID"] == null) return;
+       // if (Session["TenantID"] == null) return;
 
         using (SqlConnection con = new SqlConnection(connStr))
         {
@@ -61,11 +61,11 @@ public partial class new_lead : System.Web.UI.Page
 
                     // Set Dropdowns
                     if (ddlStatus.Items.FindByValue(dr["StatusID"].ToString()) != null)
-                        ddlStatus.SelectedValue = dr["StatusID"].ToString();
+                        ddlStatus.Value = dr["StatusID"].ToString();
 
 
                     if (ddlRequirement.Items.FindByValue(dr["RequirementID"].ToString()) != null)
-                        ddlRequirement.SelectedValue = dr["RequirementID"].ToString();
+                        ddlRequirement.Value = dr["RequirementID"].ToString();
                 }
             }
         }
@@ -127,8 +127,8 @@ WHERE LeadID = @LeadID AND TenantID = @TenantID
                 cmd.Parameters.AddWithValue("@SaledeedAmount", string.IsNullOrEmpty(txtSaledeedAmount.Value) ? (object)DBNull.Value : Convert.ToDecimal(txtSaledeedAmount.Value));
 
                 cmd.Parameters.AddWithValue("@Description", txtDescription.Value.Trim());
-                cmd.Parameters.AddWithValue("@StatusID", Convert.ToInt32(ddlStatus.SelectedValue));
-                cmd.Parameters.AddWithValue("@RequirementID", string.IsNullOrEmpty(ddlRequirement.SelectedValue) ? (object)DBNull.Value : Convert.ToInt32(ddlRequirement.SelectedValue));
+                cmd.Parameters.AddWithValue("@StatusID", Convert.ToInt32(ddlStatus.Value));
+                cmd.Parameters.AddWithValue("@RequirementID", string.IsNullOrEmpty(ddlRequirement.Value) ? (object)DBNull.Value : Convert.ToInt32(ddlRequirement.Value));
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -165,11 +165,11 @@ WHERE LeadID = @LeadID AND TenantID = @TenantID
 
     private void SaveLead()
     {
-        if (Session["TenantID"] == null || Session["TenantUserID"] == null)
-        {
-            Response.Redirect("login.aspx");
-            return;
-        }
+        //if (Session["TenantID"] == null || Session["TenantUserID"] == null)
+        //{
+        //    Response.Redirect("login.aspx");
+        //    return;
+        //}
 
         int tenantId = Convert.ToInt32(Session["TenantID"]);
         int userId = Convert.ToInt32(Session["TenantUserID"]);
@@ -201,10 +201,10 @@ WHERE LeadID = @LeadID AND TenantID = @TenantID
                     : Convert.ToDecimal(txtSaledeedAmount.Value));
 
             cmd.Parameters.AddWithValue("@Description", txtDescription.Value.Trim());
-            cmd.Parameters.AddWithValue("@StatusID", Convert.ToInt32(ddlStatus.SelectedValue));
+            cmd.Parameters.AddWithValue("@StatusID", Convert.ToInt32(ddlStatus.Value));
 
             cmd.Parameters.AddWithValue("@RequirementID",
-                string.IsNullOrEmpty(ddlRequirement.SelectedValue) ? (object)DBNull.Value : Convert.ToInt32(ddlRequirement.SelectedValue));
+                string.IsNullOrEmpty(ddlRequirement.Value) ? (object)DBNull.Value : Convert.ToInt32(ddlRequirement.Value));
 
             cmd.Parameters.AddWithValue("@CreatedBy", userId);
 

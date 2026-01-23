@@ -1,12 +1,15 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-using System.Web.Services;
-using System.Web.UI.WebControls;
-using System.Web;
+using System.Linq;
 using System.Text;
+using System.Web;
+using System.Web.Services;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 public partial class lead_list : System.Web.UI.Page
 {
@@ -14,22 +17,23 @@ public partial class lead_list : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["TenantID"] == null)
-        {
-            Response.Redirect("login.aspx");
-            return;
-        }
+        //if (Session["TenantID"] == null)
+        //{
+        //    Response.Redirect("lead-list.aspx?deleted=1", false);
+        //    return;
+        //}
 
         if (!IsPostBack)
         {
-            BindStatusDropdown();
+            BindStatusDropdown();         
+
             BindLeads();
         }
     }
 
     private void BindLeads()
     {
-        if (Session["TenantID"] == null) return;
+       // if (Session["TenantID"] == null) return;
 
         int tenantId = Convert.ToInt32(Session["TenantID"]);
         int statusId = Convert.ToInt32(ddlStatus.SelectedValue);
@@ -72,7 +76,28 @@ public partial class lead_list : System.Web.UI.Page
             ddlStatus.DataBind();
         }
 
-        ddlStatus.Items.Insert(0, new ListItem("All Statuses", "0"));
+        ddlStatus.Items.Insert(0, new System.Web.UI.WebControls.ListItem("All Statuses", "0"));
+
+        string selectedStatus = Request.QueryString["status"];
+        //if (!string.IsNullOrEmpty(selectedStatus) && ddlStatus.Items.FindByText(selectedStatus) != null)
+        //{
+        //    ddlStatus.SelectedItem.Text = selectedStatus;
+        //}
+
+        if (!string.IsNullOrEmpty(selectedStatus))
+        {
+            System.Web.UI.WebControls.ListItem item = ddlStatus.Items
+                .Cast<System.Web.UI.WebControls.ListItem>()
+                .FirstOrDefault(i =>
+                    i.Text.Equals(selectedStatus, StringComparison.OrdinalIgnoreCase));
+
+            if (item != null)
+            {
+                ddlStatus.ClearSelection();
+                item.Selected = true;
+            }
+        }
+
     }
 
     protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -144,8 +169,8 @@ public partial class lead_list : System.Web.UI.Page
         {
             int leadId = Convert.ToInt32(e.CommandArgument);
 
-            if (Session["TenantID"] == null)
-                return;
+            //if (Session["TenantID"] == null)
+            //    return;
 
             int tenantId = Convert.ToInt32(Session["TenantID"]);
 
@@ -176,8 +201,8 @@ public partial class lead_list : System.Web.UI.Page
         int leadId = Convert.ToInt32(hfLeadID.Value);
         int statusId = Convert.ToInt32(ddlStatus.SelectedValue);
 
-        if (Session["TenantID"] == null)
-            return;
+        //if (Session["TenantID"] == null)
+        //    return;
 
         int tenantId = Convert.ToInt32(Session["TenantID"]);
 
@@ -202,7 +227,7 @@ public partial class lead_list : System.Web.UI.Page
     public static List<object> GetRemarks(int leadId)
     {
         var list = new List<object>();
-        if (System.Web.HttpContext.Current.Session["TenantID"] == null) return list;
+       // if (System.Web.HttpContext.Current.Session["TenantID"] == null) return list;
 
         int tenantId = Convert.ToInt32(System.Web.HttpContext.Current.Session["TenantID"]);
         string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -232,7 +257,7 @@ public partial class lead_list : System.Web.UI.Page
     [WebMethod]
     public static void SaveRemark(int leadId, string remarkText)
     {
-        if (System.Web.HttpContext.Current.Session["TenantID"] == null) return;
+        //if (System.Web.HttpContext.Current.Session["TenantID"] == null) return;
 
         int tenantId = Convert.ToInt32(System.Web.HttpContext.Current.Session["TenantID"]);
         int userId = Convert.ToInt32(System.Web.HttpContext.Current.Session["TenantUserID"]);

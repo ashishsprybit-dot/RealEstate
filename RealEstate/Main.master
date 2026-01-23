@@ -44,7 +44,7 @@
 </head>
 
 <body>
-    <form id="form1" runat="server">
+  
 
 
     <!-- .app -->
@@ -417,7 +417,7 @@
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Name')
         });
 
-        $(document).ready(function () {
+       <%-- $(document).ready(function () {
             // var StudentListMaster = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
             $('#tbxsearch').typeahead({
                 hint: true,
@@ -449,7 +449,7 @@
                 $('#divSearchMaster').removeClass('focus');
             });
             $('.topsearch-dashboard').css('width', '100%');
-        });
+        });--%>
     </script>
     <script type="text/javascript">
         var divChangepassword = '<%= divChangepassword.ClientID %>'
@@ -497,8 +497,7 @@
                 }
             });
         }
-    </script>
-    </form>
+    </script> 
 </body>
 
 </html>

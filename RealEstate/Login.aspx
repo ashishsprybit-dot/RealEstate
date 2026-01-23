@@ -63,7 +63,7 @@
                 <div class="form-group mb-4">
                     <label class="d-block text-left" for="inputPassword">Password<span class="red">*</span></label>
                     <input type="password" class="form-control form-control-lg required" id="tbxPassword" name="tbxPassword" placeholder="Password" />
-                    <a class="pull-right forgotpassword" onclick="OpenForgotPassword('divForgotPassword','divLogin')">Forgot Password?</a>
+                    <%--<a class="pull-right forgotpassword" onclick="OpenForgotPassword('divForgotPassword','divLogin')">Forgot Password?</a>--%>
                 </div>
                 <!-- /.form-group -->
                 <!-- .form-group -->
@@ -107,11 +107,11 @@
             <%--DON'T HAVE AN ACCOUNT?<a href="#SignupModal" style="padding-left: 7px;" class="card-footer-item" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="ResetControls()">SIGN UP</a>--%>
             <!-- /.form-group -->
             <!-- copyright -->
-            <%--<br />
+            <br />
             <br />
             <p class="mb-0 px-3 text-muted text-center">
                 <%= new BAL.GeneralSettings().getConfigValue("footertext").ToString()%>
-            </p>--%>
+            </p>
         </form>
         <!-- /.auth-form -->
 

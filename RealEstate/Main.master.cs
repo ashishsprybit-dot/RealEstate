@@ -105,10 +105,10 @@ public partial class JudgementTool_Main : AdminPageSetting
         //    BindAdminName();
         //}
         ////  UserName = Convert.ToString(AdminAuthentication.FirstName + " " + AdminAuthentication.LastName);
-        if (Session["IsGoogleUser"] != null)
-        {
-            isGoogleUser = Convert.ToInt32(Session["IsGoogleUser"]);
-        }
+        //if (Session["IsGoogleUser"] != null)
+        //{
+        //    isGoogleUser = Convert.ToInt32(Session["IsGoogleUser"]);
+        //}
     }
 
 
@@ -334,61 +334,61 @@ public partial class JudgementTool_Main : AdminPageSetting
     }
     private void BindDashboard()
     {
-        DataTable dt = new DataTable();
-        DataSet ds = new DataSet();
-        TeachersBAL objTeachersBAL = new TeachersBAL();
-        if (Session["SchoolID"] != null)
-        {
-            //  dt = objTeachersBAL.TeacherDashboard(Convert.ToInt32(Session["TeacherUserID"]), Convert.ToInt32(Session["SchoolID"]));
-            ds = TeacherDashboard(Convert.ToInt32(Session["TeacherUserID"]), Convert.ToInt32(Session["SchoolID"]));
-            dt = ds.Tables[0];
-            if (dt.Rows.Count > 0)
-            {
-                Teachers = Convert.ToString(dt.Rows[0]["Teachers"]);
-                HomeGroups = Convert.ToString(dt.Rows[0]["HomeGroups"]);
-                Students = Convert.ToString(dt.Rows[0]["Students"]);
-            }
+        //DataTable dt = new DataTable();
+        //DataSet ds = new DataSet();
+        //TeachersBAL objTeachersBAL = new TeachersBAL();
+        //if (Session["SchoolID"] != null)
+        //{
+        //    //  dt = objTeachersBAL.TeacherDashboard(Convert.ToInt32(Session["TeacherUserID"]), Convert.ToInt32(Session["SchoolID"]));
+        //    ds = TeacherDashboard(Convert.ToInt32(Session["TeacherUserID"]), Convert.ToInt32(Session["SchoolID"]));
+        //    dt = ds.Tables[0];
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        Teachers = Convert.ToString(dt.Rows[0]["Teachers"]);
+        //        HomeGroups = Convert.ToString(dt.Rows[0]["HomeGroups"]);
+        //        Students = Convert.ToString(dt.Rows[0]["Students"]);
+        //    }
 
 
-            if (ds.Tables[1].Rows.Count > 0)
-            {
-                try
-                {
-                    int IsCompleted = 0;
-                    IsCompleted = Convert.ToInt32(ds.Tables[1].Rows[0]["IsCompleted"]);
-                    DateTime StartDate = Convert.ToDateTime(ds.Tables[1].Rows[0]["StartDate"]);
-                    DateTime EndDate = Convert.ToDateTime(ds.Tables[1].Rows[0]["EndDate"]);
-                    int SemesterNo = Convert.ToInt32(ds.Tables[1].Rows[0]["SemesterNo"]);
+        //    if (ds.Tables[1].Rows.Count > 0)
+        //    {
+        //        try
+        //        {
+        //            int IsCompleted = 0;
+        //            IsCompleted = Convert.ToInt32(ds.Tables[1].Rows[0]["IsCompleted"]);
+        //            DateTime StartDate = Convert.ToDateTime(ds.Tables[1].Rows[0]["StartDate"]);
+        //            DateTime EndDate = Convert.ToDateTime(ds.Tables[1].Rows[0]["EndDate"]);
+        //            int SemesterNo = Convert.ToInt32(ds.Tables[1].Rows[0]["SemesterNo"]);
 
-                    if (IsCompleted == 0)
-                    {
-                        int RemainingDays = Convert.ToInt32((EndDate - Convert.ToDateTime(DateTime.Now.ToString("dd/MMM/yyyy"))).TotalDays);
-                        if (RemainingDays <= 10)
-                        {
-                            spnSemesterHeadings.InnerHtml = "Current Semester " + SemesterNo + " - " + StartDate.ToString("yyyy") + ", End Date: " + EndDate.ToString("dd/MMM/yyyy") + ", <span style='color:#ff7777;font-weight: 600;'>" + RemainingDays.ToString() + " days remaining.</span>";
-                        }
-                        else {
-                            spnSemesterHeadings.InnerHtml = "Current Semester " + SemesterNo + " - " + StartDate.ToString("yyyy") + ", End Date: " + EndDate.ToString("dd/MMM/yyyy") + ", <span>" + RemainingDays.ToString() + " days remaining.</span>";
-                        }
-                    }
-                    else
-                    {
-                        if (SemesterNo == 2)
-                        {
-                            spnSemesterHeadings.InnerHtml = "Sem 1 is now locked. Sem 2 will commence on " + StartDate.ToString("dd/MMM/yyyy");
-                        }
-                        else {
-                            spnSemesterHeadings.InnerHtml = "Sem 2 is now locked. Sem 1 will commence on " + StartDate.ToString("dd/MMM/yyyy");
-                        }
-                    }
-                }
-                catch(Exception ex)
-                {
+        //            if (IsCompleted == 0)
+        //            {
+        //                int RemainingDays = Convert.ToInt32((EndDate - Convert.ToDateTime(DateTime.Now.ToString("dd/MMM/yyyy"))).TotalDays);
+        //                if (RemainingDays <= 10)
+        //                {
+        //                    spnSemesterHeadings.InnerHtml = "Current Semester " + SemesterNo + " - " + StartDate.ToString("yyyy") + ", End Date: " + EndDate.ToString("dd/MMM/yyyy") + ", <span style='color:#ff7777;font-weight: 600;'>" + RemainingDays.ToString() + " days remaining.</span>";
+        //                }
+        //                else {
+        //                    spnSemesterHeadings.InnerHtml = "Current Semester " + SemesterNo + " - " + StartDate.ToString("yyyy") + ", End Date: " + EndDate.ToString("dd/MMM/yyyy") + ", <span>" + RemainingDays.ToString() + " days remaining.</span>";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (SemesterNo == 2)
+        //                {
+        //                    spnSemesterHeadings.InnerHtml = "Sem 1 is now locked. Sem 2 will commence on " + StartDate.ToString("dd/MMM/yyyy");
+        //                }
+        //                else {
+        //                    spnSemesterHeadings.InnerHtml = "Sem 2 is now locked. Sem 1 will commence on " + StartDate.ToString("dd/MMM/yyyy");
+        //                }
+        //            }
+        //        }
+        //        catch(Exception ex)
+        //        {
 
-                }
+        //        }
 
-            }
-        }
+        //    }
+        //}
     }
     private void CheckCookieLogin()
     {
