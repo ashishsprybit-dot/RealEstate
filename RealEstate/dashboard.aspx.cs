@@ -211,11 +211,13 @@ public partial class dashboard : System.Web.UI.Page
             int count = Convert.ToInt32(row["LeadCount"]);
 
             sb.Append(
-                "<div class='status-card' data-status='" + status + "' onclick='filterByStatus(this)'>" +
-                    "<div class='status-name'>" + status + "</div>" +
-                    "<div class='lead-number'>" + count + "</div>" +
-                "</div>"
-            );
+            "<div class='status-card' data-status='" + status + "' onclick='filterByStatus(this)'>" +
+                "<div class='status-name'>" + status + "</div>" +
+                "<div class='lead-count'>" +
+                    "Total Leads: <span class='lead-number'>" + count + "</span>" +
+                "</div>" +
+            "</div>"
+        );
         }
 
         divStatusCards.InnerHtml = sb.ToString();

@@ -12,7 +12,8 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label>Scheme Name *</label>
+                <label>Scheme Name <span class="text-danger">*</span></label>
+
                 <input type="text" id="txtSchemeName" runat="server" class="form-control" />
             </div>
         </div>
@@ -21,7 +22,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label>Customer Name *</label>
+                <label>Customer Name <span class="text-danger">*</span></label>
                 <input type="text" id="txtCustomerName" runat="server" class="form-control" />
             </div>
         </div>
@@ -30,8 +31,15 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label>Contact Number *</label>
-                <input type="text" id="txtContactNumber" runat="server" class="form-control" />
+                <label>Contact Number <span class="text-danger">*</span></label>
+                <input type="text"
+       id="txtContactNumber"
+       runat="server"
+       class="form-control"
+       maxlength="10"
+       onkeypress="return isNumberKey(event);"
+       oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+
             </div>
         </div>
     </div>
@@ -39,7 +47,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label>Birth Date</label>
+                <label>Birth Date<span class="text-danger">*</span></label>
                 <input type="text"
                     id="txtBirthDate"
                     runat="server"
@@ -52,8 +60,14 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label>Loan Amount *</label>
-                <input type="text" id="txtLoanAmount" runat="server" class="form-control" />
+                <label>Loan Amount <span class="text-danger">*</span></label>
+                <input type="text"
+                       id="txtLoanAmount"
+                       runat="server"
+                       class="form-control"
+                       onkeypress="return isNumberOrDecimal(event);"
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, '');" />
+
             </div>
         </div>
     </div>
@@ -62,7 +76,13 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Property Value</label>
-                <input type="text" id="txtPropertyValue" runat="server" class="form-control" />
+                <input type="text"
+                       id="txtPropertyValue"
+                       runat="server"
+                       class="form-control"
+                       onkeypress="return isNumberOrDecimal(event);"
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, '');" />
+
             </div>
         </div>
     </div>
@@ -71,7 +91,13 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Sale Deed Amount</label>
-                <input type="text" id="txtSaledeedAmount" runat="server" class="form-control" />
+                <input type="text"
+                       id="txtSaledeedAmount"
+                       runat="server"
+                       class="form-control"
+                       onkeypress="return isNumberOrDecimal(event);"
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, '');" />
+
             </div>
         </div>
     </div>
@@ -79,7 +105,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label>Status *</label>
+                <label>Status <span class="text-danger">*</span></label>
                 <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control" />
             </div>
         </div>
@@ -88,7 +114,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label>Requirement *</label>
+                <label>Requirement <span class="text-danger">*</span></label>
                 <asp:DropDownList ID="ddlRequirement" runat="server" CssClass="form-control" />
             </div>
         </div>
@@ -109,7 +135,8 @@
                 runat="server"
                 Text="Save Information"
                 CssClass="btn btn-primary"
-                OnClick="btnSave_Click" />
+                OnClick="btnSave_Click"
+                OnClientClick="return validateForm();"/>
 
             <asp:Button ID="btnCancel" 
     runat="server" 
@@ -124,6 +151,66 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHFooter" runat="server">
     <script>
+
+        function validateForm() {
+
+            if (!$('#<%=txtSchemeName.ClientID%>').val().trim()) {
+                alert('Scheme Name is required');
+                return false;
+            }
+
+            if (!$('#<%=txtCustomerName.ClientID%>').val().trim()) {
+                alert('Customer Name is required');
+                return false;
+            }
+
+            if (!$('#<%=txtContactNumber.ClientID%>').val().trim()) {
+                alert('Contact Number is required');
+                return false;
+            }
+
+            if ($('#<%=txtContactNumber.ClientID%>').val().length !== 10) {
+                alert('Contact Number must be exactly 10 digits');
+                return false;
+            }
+
+
+            if (!$('#<%=txtBirthDate.ClientID%>').val().trim()) {
+            alert('Birth Date is required');
+            return false;
+        }
+
+        if (!$('#<%=txtLoanAmount.ClientID%>').val().trim()) {
+            alert('Loan Amount is required');
+            return false;
+        }
+
+        if ($('#<%=ddlStatus.ClientID%>').val() === "0") {
+            alert('Please select Status');
+            return false;
+        }
+
+            if ($('#<%=ddlRequirement.ClientID%>').val() === "") {
+                alert('Please select Requirement');
+                return false;
+            }
+
+            return true; 
+        }
+
+        function isNumberKey(evt) {
+            var charCode = evt.which ? evt.which : evt.keyCode;
+
+            if (charCode === 8 || charCode === 9 || charCode === 46)
+                return true;
+
+            if (charCode < 48 || charCode > 57)
+                return false;
+
+            return true;
+        }
+
+
         var isSubmitting = false;
 
         function onSeClick(btn) {

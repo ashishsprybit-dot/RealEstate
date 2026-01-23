@@ -7,11 +7,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHContent" runat="server">
 
-    <header class="page-title-bar">
-        <h1 class="page-title">Leads</h1>
+    <header class="page-title-bar mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="page-title mb-0">Leads</h1>
 
+        <a href="new-lead.aspx" class="btn btn-success btn-sm">
+            <i class="fa fa-plus"></i> Add New
+        </a>
+    </div>
+</header>
 
-    </header>
 
     <div class="page-section">
         <div class="card card-fluid">
@@ -22,7 +27,7 @@
                         <input type="text"
                             id="searchInput"
                             class="form-control"
-                            placeholder="Search by Scheme, Transaction, Customer or Contact" />
+                            placeholder="Search by Scheme, Requirement, Customer or Contact" />
                     </div>
 
                     <div class="col-md-3">
@@ -35,12 +40,7 @@
                         </asp:DropDownList>
                     </div>
 
-                    <div class="col-md-5 text-end">
-                        <%--<a class="btn btn-primary btn-sm">Past Disbursed Leads</a>--%>
-                        <a href="new-lead.aspx" class="btn btn-success btn-sm">Add New</a>
-
-                        <%--        <a class="btn btn-secondary btn-sm">Export</a>--%>
-                    </div>
+                    
                 </div>
 
 
@@ -54,8 +54,8 @@
                             <th>Requirement</th>
                             <th>Status</th>
                             <th>Created By</th>
-                            <th class="text-center">Remarks</th>
-                            <th class="text-center">History</th>
+<%--                            <th class="text-center">Remarks</th>
+                            <th class="text-center">History</th>--%>
                             <th class="text-center">Edit</th>
                             <th class="text-center">Delete</th>
                         </tr>
@@ -96,7 +96,7 @@
                                     </td>
 
                                     <td><%# Eval("CreatedByName") %></td>
-                                    <td class="text-center">
+                                    <%--<td class="text-center">
                                         <a href="javascript:void(0);" class="icon-btn open-remarks"
                                             title="Remarks"
                                             data-id='<%# Eval("LeadID") %>'
@@ -108,7 +108,7 @@
                                         <a class="icon-btn open-history" data-id="<%# Eval("LeadID") %>">
                                             <i class="fa fa-history"></i>
                                         </a>
-                                    </td>
+                                    </td>--%>
                                     <td class="text-center">
                                         <a href='new-lead.aspx?LeadID=<%# Eval("LeadID") %>' class="icon-btn">
                                             <i class="fa fa-edit"></i>
