@@ -47,7 +47,7 @@ public partial class Main_Teacher_Modify : System.Web.UI.Page
            // BindModules();
             if (objUserManagementBAL.ID != 0)
             {
-                spnHeader.InnerHtml = "Edit Tenant Users";
+                spnHeader.InnerHtml = "Edit User";
                 tbPassword.Visible = false;
                 BindControls();
             }
@@ -231,7 +231,7 @@ public partial class Main_Teacher_Modify : System.Web.UI.Page
                 ShowMessage("Duplicate Email Address found.", "alert alert-danger error", divMsg.ClientID);
                 break;
             default:
-                ShowMessage("Tenant information has been saved successfully.", "alert alert-success", divMsg.ClientID);
+                ShowMessage("User information has been saved successfully.", "alert alert-success", divMsg.ClientID);
                 Response.Write(Common.ScriptStartTag + "parent.ScrollTop();" + Common.ScriptEndTag);
                 Response.Write(Common.ScriptStartTag + "parent.window.setTimeout(\"parent.window.location.href = 'user-management-list.aspx'\",2000);" + Common.ScriptEndTag);
                 break;

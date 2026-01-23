@@ -95,7 +95,7 @@ var DataTablesDemo = /*#__PURE__*/ function () {
                     {
                         targets: 0,
                         render: function render(data, type, row, meta) {
-                            return "<a href=\"tenant-modify.aspx.aspx?id=" + row.ID + "\" class=\"mr-1\">" + row.Name + "</a>";                            
+                            return "<a href=\"tenant-modify.aspx?id=" + row.ID + "\" class=\"mr-1\">" + row.Name + "</a>";                            
                         }
                     }, 
                     {

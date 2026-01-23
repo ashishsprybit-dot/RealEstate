@@ -7,12 +7,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHContent" runat="Server">
     <header class="page-title-bar">
         <div class="d-flex justify-content-between">
-            <h1 class="page-title">User Tenant List </h1>
+            <h1 class="page-title">User List </h1>
             <div class="btn-toolbar">
                 <button type="button" class="btn btn-primary" onclick="window.location.href='user-management-modify.aspx'">Add New</button>
             </div>
         </div>
-         <p class="text-muted">It is recommended that teachers are added using their DET Google Account. To do this get them to first go to your homepage and click <b>Sign Up</b> and then <b>Sign Up With Google</b>. Teachers can also be added manually by using the <b>Add New</b> button. </p>
+       <%--  <p class="text-muted">It is recommended that teachers are added using their DET Google Account. To do this get them to first go to your homepage and click <b>Sign Up</b> and then <b>Sign Up With Google</b>. Teachers can also be added manually by using the <b>Add New</b> button. </p>--%>
     </header>
     <!-- /.page-title-bar -->
     <div class="alert alert-danger hide" id="divMsg" runat="server" style="display: none;"></div>
@@ -43,7 +43,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span>
                             </div>
-                            <input id="table-search" type="text" class="form-control" placeholder="Search Tenant Users">
+                            <input id="table-search" type="text" class="form-control" placeholder="Search Users">
                         </div>
                         <!-- /.input-group -->
                     </div>
@@ -103,10 +103,5 @@
     <!-- BEGIN PAGE LEVEL JS -->
     <script src="<%=Config.VirtualDir %>assets/javascript/pages/dataTables.bootstrap.js"></script>
     <script src="<%=Config.VirtualDir %>js/Page/datatables-teacher.js"></script>
-    <script type="text/javascript">
-        function SetTeacherCount() {
-            var count = $('.badge-teacher').text();
-            $('.badge-teacher').text(parseInt(count) - 1);
-        }
-    </script>
+    
 </asp:Content>

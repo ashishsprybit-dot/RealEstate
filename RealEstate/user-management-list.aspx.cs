@@ -75,8 +75,8 @@ public partial class Main_Teacher_List : System.Web.UI.Page
         }
 
         objUserManagement.Operation(Convert.ToString(Request["hdnID"]), objOpr, Convert.ToInt64(Session["TeacherUserID"]));
-        if (Convert.ToString(Request["type"]) == "remove")
-            Response.Write("<script>SetTeacherCount();</script>");
+        //if (Convert.ToString(Request["type"]) == "remove")
+        //    Response.Write("<script>SetTeacherCount();</script>");
         Response.Write(Javascript.DisplayMsg(divMsg.ClientID, strMsg, Javascript.MessageType.Success, true));
 
         Response.End();

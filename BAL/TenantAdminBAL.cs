@@ -88,7 +88,7 @@
             DbParameter[] dbParam = new DbParameter[] {
                 new DbParameter("@ID", DbParameter.DbType.VarChar, 2000, Id),
                 new DbParameter("@OprType", DbParameter.DbType.Int, 10, Convert.ToInt16(ObjOperation)) };
-            DbConnectionDAL.ExecuteNonQuery(CommandType.StoredProcedure, "TeachersOperation", dbParam);
+            DbConnectionDAL.ExecuteNonQuery(CommandType.StoredProcedure, "TenantAdminOperation", dbParam);
         }
 
 

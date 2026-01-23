@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHContent" runat="Server">
     <header class="page-title-bar">
-        <h1 class="page-title"><span id="spnHeader" runat="server">Add User Tenant</span></h1>
+        <h1 class="page-title"><span id="spnHeader" runat="server">Add User</span></h1>
         <p class="text-muted">This menu is used to approve Teacher accounts and to assign them classes and permissions. Under Home Groups Access only select the home groups that the teacher needs to be able to make changes to. All users will be able to view scores for ALL students (as long as the View Student Assessments module is assigned). Under Module Access most teachers should only be assigned the Standard Features unless they specifically require the use of any of the Advanced Features.</p>
     </header>
     <div class="page-section" data-select2-id="166">

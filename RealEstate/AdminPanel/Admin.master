@@ -70,7 +70,7 @@
                     <!-- toggle aside menu -->
                     <button class="hamburger hamburger-squeeze mr-2" type="button" data-toggle="aside-menu" aria-label="toggle aside menu"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
                     <!-- /toggle aside menu -->
-                    <a href="dashboard.aspx">CLT
+                    <a href="dashboard.aspx">CRM
                     </a>
                 </div>
                 <!-- /.top-bar-brand -->

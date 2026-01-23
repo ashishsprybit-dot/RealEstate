@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHContent" runat="Server">
     <header class="page-title-bar">
         <div class="d-flex justify-content-between">
-            <h1 class="page-title">Tenant Admins List </h1>
+            <h1 class="page-title">Tenant Admin List </h1>
             <div class="btn-toolbar">
                 <button type="button" class="btn btn-primary" onclick="window.location.href='tenant-admin-modify.aspx'">Add Tenant Admin</button>
             </div>
